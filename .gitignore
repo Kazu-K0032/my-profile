@@ -1,0 +1,37 @@
+# 依存関係
+/node_modules
+
+# Next.js
+/.next
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# ログファイル
+*.log
+
+# 環境設定ファイル
+.env.*
+.env.local
+.env.production
+.env.development
+
+# エディタ
+.cursor/mcp.json
+
+# Husky
+.husky/_
+
+# tmp
+tmp.*
+tmp/
+temp.*
+temp/
+
+# lockfile
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+bun.lockb
+bun.lock
