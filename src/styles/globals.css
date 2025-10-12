@@ -1,3 +1,64 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+:root {
+  --c-bg-header: #ecf0d2;
+  --c-bg-primary: #e7ebdf;
+  --c-font-primary: #374151;
+}
+
+.dark {
+  --c-bg-header: #1f2937;
+  --c-bg-primary: #2d3748;
+  --c-font-primary: #ffffff;
+}
+
+@layer base {
+  html {
+    box-sizing: content-box;
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: var(--c-bg-primary);
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+  }
+}
+
+@layer utilities {
+  .dark * {
+    color: white !important;
+  }
+
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    color: white !important;
+  }
+
+  .dark p,
+  .dark span,
+  .dark div {
+    color: white !important;
+  }
+}
+
+.c-bg-header {
+  @apply bg-[var(--c-bg-header)];
+}
+
+.c-bg-primary {
+  @apply bg-[var(--c-bg-primary)];
+}
+
+.c-navItem {
+  @apply border-b border-b-transparent transition-colors duration-300 hover:cursor-pointer hover:border-dotted hover:border-b-[#c58a8c] hover:text-[#c58a8c];
+}
+
+.c-date {
+  @apply transition-all duration-300 hover:cursor-pointer hover:border-b-[#c58a8c] hover:text-[#c58a8c] hover:underline hover:decoration-dotted;
+}
+
+.c-link {
+  @apply transition-all duration-300 hover:cursor-pointer hover:border-b-[#c58a8c] hover:text-[#c58a8c] hover:underline hover:decoration-dotted;
+}
