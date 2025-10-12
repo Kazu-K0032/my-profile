@@ -11,13 +11,8 @@ export const INTER_FONT = Inter({
   fallback: ['system-ui', 'arial'],
 });
 
-// コンテンツ設定
-export type ContentKey = (typeof CONTENT_CONFIG)[keyof typeof CONTENT_CONFIG]['key'];
-export type ContentPath = (typeof CONTENT_CONFIG)[keyof typeof CONTENT_CONFIG]['path'];
-export const CONTENT_CONFIG = {
-  HOME: {
-    key: 'home',
-    name: 'ホーム',
-    path: '/',
-  },
-} as const;
+// ダークモード/ライトモード
+export const THEME_MODES = {
+  DARK: 'dark',
+  LIGHT: 'light',
+};

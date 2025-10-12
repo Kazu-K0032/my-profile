@@ -1,7 +1,7 @@
-import '@/styles/globals.css';
 import { Metadata } from 'next';
-import { SITE_TITLE, SITE_DESCRIPTION, INTER_FONT } from '@/constants/globals.constants';
+import { ThemeProvider } from 'next-themes';
 import '@/styles/globals.css';
+import { SITE_TITLE, SITE_DESCRIPTION, INTER_FONT } from '@/constants/globals.constants';
 
 export const metadata: Metadata = {
   title: SITE_TITLE,
@@ -14,8 +14,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
-      <body className={`${INTER_FONT.variable} antialiased`}>{children}</body>
+    <html lang="ja" suppressHydrationWarning>
+      <body className={`${INTER_FONT.variable} antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
