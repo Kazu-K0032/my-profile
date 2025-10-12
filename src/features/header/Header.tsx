@@ -8,6 +8,7 @@ import type { NavigationTabKey } from '@/types/globals.types';
 import { useInitialLoad } from './hooks/useInitialLoad';
 import Navigation from './components/Navigation';
 import { headerStyles, themeToggleStyles, getThemeToggleClasses } from './header.styles';
+import { cn } from '@/utils/cn';
 
 interface HeaderProps {
   onNavClick: (page: NavigationTabKey) => void;
@@ -27,7 +28,7 @@ export default function Header({ onNavClick, currentPage }: HeaderProps) {
     setMounted(true);
   }, []);
 
-  const switchLightDark = () => {
+  const toggleTheme = () => {
     setTheme(theme === THEME_MODES.DARK ? THEME_MODES.LIGHT : THEME_MODES.DARK);
   };
 
@@ -44,7 +45,7 @@ export default function Header({ onNavClick, currentPage }: HeaderProps) {
 
     const isDark = resolvedTheme === THEME_MODES.DARK;
     return (
-      <button onClick={switchLightDark} className={getThemeToggleClasses(isDark)}>
+      <button onClick={toggleTheme} className={getThemeToggleClasses(isDark)}>
         <span className="text-lg">{isDark ? '🌙' : '☀️'}</span>
         <span className="text-sm">{isDark ? 'Dark' : 'Light'}</span>
       </button>
@@ -69,7 +70,10 @@ export default function Header({ onNavClick, currentPage }: HeaderProps) {
                   initial={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="absolute top-2 flex max-w-full items-center justify-center px-4 py-2 text-center text-3xl font-bold break-words text-black select-none md:px-0 md:text-4xl dark:text-white"
+                  className={cn(
+                    'absolute top-2 flex max-w-full items-center justify-center px-4 py-2 text-center text-3xl font-bold break-words select-none md:px-0 md:text-4xl',
+                    'text-black dark:text-white'
+                  )}
                 >
                   Kuji&#39;s Portfolio
                 </motion.h1>

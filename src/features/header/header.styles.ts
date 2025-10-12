@@ -5,7 +5,7 @@ import { cn } from '@/utils/cn';
  */
 export const headerStyles = {
   container: 'relative',
-  header: 'w-full c-bg-header transition-colors duration-300 text-black dark:text-white',
+  header: cn('w-full c-bg-header transition-colors duration-300', 'text-black dark:text-white'),
   content: 'relative flex h-full items-center justify-center',
   section: 'flex flex-col items-center',
 } as const;
@@ -29,9 +29,11 @@ export const navigationStyles = {
   list: 'flex list-none gap-x-5 text-center text-2xl',
   button: {
     base: 'relative select-none px-3 py-1 transition-all duration-200 cursor-pointer min-h-[2.5rem] flex items-center justify-center font-medium',
-    active:
-      'text-black after:absolute after:bottom-0 after:left-0 after:w-full after:border-b-2 after:border-dotted after:border-black dark:text-white dark:after:border-white',
-    inactive: 'text-gray-600 hover:text-black dark:text-gray-200 dark:hover:text-white',
+    active: cn(
+      'text-black after:absolute after:bottom-0 after:left-0 after:w-full after:border-b-2 after:border-dotted after:border-black',
+      'dark:text-white dark:after:border-white'
+    ),
+    inactive: cn('text-gray-600 hover:text-black', 'dark:text-gray-200 dark:hover:text-white'),
   },
 } as const;
 
@@ -39,8 +41,10 @@ export const navigationStyles = {
  * ポートフォリオタイトルのスタイル
  */
 export const portfolioTitleStyles = {
-  title:
-    'c-bg-header absolute top-2 flex max-w-full select-none items-center justify-center break-words px-4 py-2 text-center text-3xl font-bold md:px-0 md:text-4xl text-black dark:text-white',
+  title: cn(
+    'c-bg-header absolute top-2 flex max-w-full select-none items-center justify-center break-words px-4 py-2 text-center text-3xl font-bold md:px-0 md:text-4xl',
+    'text-black dark:text-white'
+  ),
 } as const;
 
 /**

@@ -19,7 +19,7 @@ export default function ThemeToggle() {
   /**
    * テーマ切り替え
    */
-  const switchLightDark = () => {
+  const toggleTheme = () => {
     setTheme(theme === THEME_MODES.DARK ? THEME_MODES.LIGHT : THEME_MODES.DARK);
   };
 
@@ -36,7 +36,7 @@ export default function ThemeToggle() {
   const isDark = resolvedTheme === THEME_MODES.DARK;
 
   return (
-    <button onClick={switchLightDark} className={getThemeToggleClasses(isDark)}>
+    <button onClick={toggleTheme} className={getThemeToggleClasses(isDark)}>
       <span className="text-lg">{isDark ? '🌙' : '☀️'}</span>
       <span className="text-sm">{isDark ? 'Dark' : 'Light'}</span>
     </button>
