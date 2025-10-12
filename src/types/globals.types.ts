@@ -11,9 +11,9 @@ export interface NavigationTab {
 /**
  * ナビゲーションタブのキー型
  */
-export type NavigationTabKey = NavigationTab['key'];
+export type NavigationTabKey = NavigationTab["key"];
 
 /**
  * テーマモードの型
  */
-export type ThemeMode = 'dark' | 'light';
+export type ThemeMode = "dark" | "light";

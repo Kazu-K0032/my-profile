@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Header } from '@/features/header';
-import { NAVIGATION_TABS } from '@/constants/globals.constants';
-import type { NavigationTabKey } from '@/types/globals.types';
-import { cn } from '@/utils/cn';
+import { useState } from "react";
+import { NAVIGATION_TABS } from "@/constants/globals.constants";
+import { Header } from "@/features/header";
+import type { NavigationTabKey } from "@/types/globals.types";
+import { cn } from "@/utils/cn";
 
 export default function Home() {
-  const [currentPage, setCurrentPage] = useState<NavigationTabKey>('About');
+  const [currentPage, setCurrentPage] = useState<NavigationTabKey>("About");
   const handleNavClick = (page: NavigationTabKey) => {
     setCurrentPage(page);
   };
@@ -22,14 +22,21 @@ export default function Home() {
       {/* メインコンテンツエリア */}
       <main className="px-8 py-16">
         <div className="mx-auto max-w-4xl">
-          <h1 className={cn('mb-4 text-4xl font-bold', 'text-black dark:text-white')}>
+          <h1
+            className={cn(
+              "mb-4 text-4xl font-bold",
+              "text-black dark:text-white"
+            )}
+          >
             {currentTab?.title || currentPage}
           </h1>
-          <p className={cn('text-lg', 'text-gray-600 dark:text-white')}>
-            {currentTab?.subtitle || ''}
+          <p className={cn("text-lg", "text-gray-600 dark:text-white")}>
+            {currentTab?.subtitle || ""}
           </p>
           {currentTab?.description && (
-            <p className={cn('mt-2 text-sm', 'text-gray-500 dark:text-gray-100')}>
+            <p
+              className={cn("mt-2 text-sm", "text-gray-500 dark:text-gray-100")}
+            >
               {currentTab.description}
             </p>
           )}

@@ -1,7 +1,11 @@
-import { Metadata } from 'next';
-import { ThemeProvider } from 'next-themes';
-import '@/styles/globals.css';
-import { SITE_TITLE, SITE_DESCRIPTION, INTER_FONT } from '@/constants/globals.constants';
+import { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
+import "@/styles/globals.css";
+import {
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  INTER_FONT,
+} from "@/constants/globals.constants";
 
 export const metadata: Metadata = {
   title: SITE_TITLE,

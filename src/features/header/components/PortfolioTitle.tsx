@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { portfolioTitleStyles } from '../header.styles';
+import { motion, AnimatePresence } from "framer-motion";
+import { portfolioTitleStyles } from "../header.styles";
 
 interface PortfolioTitleProps {
   isInitialLoad: boolean;
