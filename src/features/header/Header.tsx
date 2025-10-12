@@ -1,26 +1,60 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import { THEME_MODES } from '@/constants/globals.constants';
+import type { NavigationTabKey } from '@/types/globals.types';
 import { useInitialLoad } from './hooks/useInitialLoad';
-import { MainTtlType } from './Header.types';
-import { headerStyles } from './header.styles';
 import Navigation from './components/Navigation';
-import PortfolioTitle from './components/PortfolioTitle';
+import { headerStyles, themeToggleStyles, getThemeToggleClasses } from './header.styles';
 
 interface HeaderProps {
-  onNavClick: (page: MainTtlType) => void;
-  currentPage: MainTtlType;
+  onNavClick: (page: NavigationTabKey) => void;
+  currentPage: NavigationTabKey;
 }
 
 /**
  * ヘッダーコンポーネント
- * ナビゲーション（テーマ切り替え含む）、ポートフォリオタイトルを含む
+ * テーマ切り替え、ナビゲーション、ポートフォリオタイトルを含む
  */
 export default function Header({ onNavClick, currentPage }: HeaderProps) {
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const { isInitialLoad } = useInitialLoad();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const switchLightDark = () => {
+    setTheme(theme === THEME_MODES.DARK ? THEME_MODES.LIGHT : THEME_MODES.DARK);
+  };
+
+  // テーマ切り替えボタンのレンダリング
+  const renderThemeButton = () => {
+    if (!mounted) {
+      return (
+        <button className={themeToggleStyles.placeholder}>
+          <span className="text-lg">☀️</span>
+          <span className="text-sm">Light</span>
+        </button>
+      );
+    }
+
+    const isDark = resolvedTheme === THEME_MODES.DARK;
+    return (
+      <button onClick={switchLightDark} className={getThemeToggleClasses(isDark)}>
+        <span className="text-lg">{isDark ? '🌙' : '☀️'}</span>
+        <span className="text-sm">{isDark ? 'Dark' : 'Light'}</span>
+      </button>
+    );
+  };
 
   return (
     <div className={headerStyles.container}>
+      {renderThemeButton()}
+
       <motion.header
         className={headerStyles.header}
         initial={false}
@@ -29,7 +63,19 @@ export default function Header({ onNavClick, currentPage }: HeaderProps) {
       >
         <div className={headerStyles.content}>
           <section className={headerStyles.section}>
-            <PortfolioTitle isInitialLoad={isInitialLoad} />
+            <AnimatePresence>
+              {isInitialLoad && (
+                <motion.h1
+                  initial={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute top-2 flex max-w-full items-center justify-center px-4 py-2 text-center text-3xl font-bold break-words text-black select-none md:px-0 md:text-4xl dark:text-white"
+                >
+                  Kuji&#39;s Portfolio
+                </motion.h1>
+              )}
+            </AnimatePresence>
+
             <Navigation
               onNavClick={onNavClick}
               currentPage={currentPage}

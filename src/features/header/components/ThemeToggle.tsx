@@ -16,6 +16,9 @@ export default function ThemeToggle() {
     setMounted(true);
   }, []);
 
+  /**
+   * テーマ切り替え
+   */
   const switchLightDark = () => {
     setTheme(theme === THEME_MODES.DARK ? THEME_MODES.LIGHT : THEME_MODES.DARK);
   };

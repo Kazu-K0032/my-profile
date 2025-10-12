@@ -7,19 +7,39 @@
 }
 
 .dark {
-  --c-bg-header: #262626;
-  --c-bg-primary: #1a1a1a;
+  --c-bg-header: #1f2937;
+  --c-bg-primary: #2d3748;
   --c-font-primary: #ffffff;
 }
 
 @layer base {
   html {
     box-sizing: content-box;
-    color: var(--c-font-primary);
     font-family: 'Noto Sans JP', sans-serif;
     background-color: var(--c-bg-primary);
     line-height: 1.2;
     letter-spacing: 0.06em;
+  }
+}
+
+@layer utilities {
+  .dark * {
+    color: white !important;
+  }
+
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    color: white !important;
+  }
+
+  .dark p,
+  .dark span,
+  .dark div {
+    color: white !important;
   }
 }
 

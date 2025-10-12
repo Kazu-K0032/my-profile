@@ -20,7 +20,7 @@ export default function PortfolioTitle({ isInitialLoad }: PortfolioTitleProps) {
           transition={{ duration: 0.5 }}
           className={portfolioTitleStyles.title}
         >
-          Kazuaki Kuji&#39;s Portfolio
+          Kuji&#39;s Portfolio
         </motion.h1>
       )}
     </AnimatePresence>

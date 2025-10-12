@@ -5,32 +5,33 @@ import { cn } from '@/utils/cn';
  */
 export const headerStyles = {
   container: 'relative',
-  header:
-    'w-full c-bg-header text-black transition-colors duration-300 dark:bg-gray-900 dark:text-white',
+  header: 'w-full c-bg-header transition-colors duration-300 text-black dark:text-white',
   content: 'relative flex h-full items-center justify-center',
-  section: 'flex flex-col items-center w-full',
+  section: 'flex flex-col items-center',
 } as const;
 
 /**
- * テーマトグルボタンのスタイル（ナビゲーション内）
+ * テーマトグルボタンのスタイル
  */
 export const themeToggleStyles = {
-  base: 'relative select-none px-2 py-1 transition-all duration-200 text-left flex items-center gap-2',
-  dark: 'text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-gray-100',
-  light: 'text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-gray-100',
-  placeholder: 'invisible',
+  base: 'fixed right-4 top-2 z-50 flex select-none items-center gap-2 rounded-full px-4 py-2 font-medium backdrop-blur-md transition-all duration-300 w-24 justify-center',
+  dark: 'bg-gray-800/70 text-gray-200 shadow-lg shadow-gray-800/50 hover:bg-gray-700/70',
+  light: 'bg-white/70 text-gray-800 shadow-lg shadow-gray-300/50 hover:bg-gray-50/70',
+  placeholder:
+    'invisible fixed right-4 top-2 z-50 flex items-center gap-2 rounded-full px-4 py-2 font-medium w-24 justify-center',
 } as const;
 
 /**
  * ナビゲーションのスタイル
  */
 export const navigationStyles = {
-  nav: 'flex flex-col justify-center items-center bg-red-500 w-full h-full border-2 border-blue-500',
-  list: 'flex flex-col list-none gap-y-2 text-left text-lg justify-center items-center bg-green-500 p-4',
+  nav: 'flex items-center justify-center',
+  list: 'flex list-none gap-x-5 text-center text-2xl',
   button: {
-    base: 'relative select-none px-2 py-1 transition-all duration-200 text-left',
-    active: 'font-bold text-black dark:text-gray-100',
-    inactive: 'text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-gray-100',
+    base: 'relative select-none px-3 py-1 transition-all duration-200 cursor-pointer min-h-[2.5rem] flex items-center justify-center font-medium',
+    active:
+      'text-black after:absolute after:bottom-0 after:left-0 after:w-full after:border-b-2 after:border-dotted after:border-black dark:text-white dark:after:border-white',
+    inactive: 'text-gray-600 hover:text-black dark:text-gray-200 dark:hover:text-white',
   },
 } as const;
 
@@ -39,7 +40,7 @@ export const navigationStyles = {
  */
 export const portfolioTitleStyles = {
   title:
-    'absolute top-2 flex max-w-full select-none items-center justify-center break-words px-4 py-2 text-center text-3xl font-bold md:px-0 md:text-4xl text-black dark:text-white',
+    'c-bg-header absolute top-2 flex max-w-full select-none items-center justify-center break-words px-4 py-2 text-center text-3xl font-bold md:px-0 md:text-4xl text-black dark:text-white',
 } as const;
 
 /**
