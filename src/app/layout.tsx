@@ -1,10 +1,6 @@
 import '@/styles/globals.css';
 import { Metadata } from 'next';
-import {
-  SITE_TITLE,
-  SITE_DESCRIPTION,
-  INTER_FONT,
-} from '@/constants/globals.constants';
+import { SITE_TITLE, SITE_DESCRIPTION, INTER_FONT } from '@/constants/globals.constants';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {

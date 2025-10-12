@@ -12,10 +12,8 @@ export const INTER_FONT = Inter({
 });
 
 // コンテンツ設定
-export type ContentKey =
-  (typeof CONTENT_CONFIG)[keyof typeof CONTENT_CONFIG]['key'];
-export type ContentPath =
-  (typeof CONTENT_CONFIG)[keyof typeof CONTENT_CONFIG]['path'];
+export type ContentKey = (typeof CONTENT_CONFIG)[keyof typeof CONTENT_CONFIG]['key'];
+export type ContentPath = (typeof CONTENT_CONFIG)[keyof typeof CONTENT_CONFIG]['path'];
 export const CONTENT_CONFIG = {
   HOME: {
     key: 'home',
