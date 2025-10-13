@@ -25,10 +25,10 @@ export default function About() {
     <div className="mx-auto max-w-6xl">
       {/* ヘッダーセクション */}
       <div className="mb-12 text-center">
-        <h2 className="mb-4 text-5xl font-bold text-black md:text-6xl dark:text-white">
+        <h2 className="mb-4 text-5xl font-bold text-gray-800 md:text-6xl dark:text-gray-100">
           {mainTitle}
         </h2>
-        <p className="text-xl font-medium text-gray-600 dark:text-gray-300">
+        <p className="text-xl font-medium text-gray-700 dark:text-gray-200">
           {subTitle}
         </p>
       </div>
@@ -36,7 +36,7 @@ export default function About() {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* プロフィールカード */}
         <div className="lg:col-span-2">
-          <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-xl dark:border-gray-700 dark:bg-gray-800">
+          <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-slate-50 to-blue-50 p-8 shadow-xl dark:border-slate-600 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-700 dark:text-slate-100">
             <div className="mb-6 flex items-center">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-2xl font-bold text-white">
                 K
@@ -57,7 +57,7 @@ export default function About() {
           {/* 受験資格・活動・趣味セクション */}
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
             {/* 受験資格 */}
-            <div className="rounded-xl border border-green-200 bg-gradient-to-br from-green-50 to-emerald-50 p-6 dark:border-green-800 dark:from-green-900/20 dark:to-emerald-900/20">
+            <div className="rounded-xl border border-green-200 bg-gradient-to-br from-emerald-50 to-green-100 p-6 dark:border-emerald-600 dark:from-emerald-900/30 dark:to-green-800/30">
               <h4 className="mb-4 flex items-center text-lg font-bold text-green-800 dark:text-green-300">
                 <span className="mr-2 h-2 w-2 rounded-full bg-green-500"></span>
                 受験資格
@@ -82,7 +82,7 @@ export default function About() {
             </div>
 
             {/* 活動 */}
-            <div className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-6 dark:border-blue-800 dark:from-blue-900/20 dark:to-indigo-900/20">
+            <div className="rounded-xl border border-blue-200 bg-gradient-to-br from-sky-50 to-blue-100 p-6 dark:border-sky-600 dark:from-sky-900/30 dark:to-blue-800/30">
               <h4 className="mb-4 flex items-center text-lg font-bold text-blue-800 dark:text-blue-300">
                 <span className="mr-2 h-2 w-2 rounded-full bg-blue-500"></span>
                 活動
@@ -113,7 +113,7 @@ export default function About() {
             </div>
 
             {/* 趣味 */}
-            <div className="rounded-xl border border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50 p-6 dark:border-purple-800 dark:from-purple-900/20 dark:to-pink-900/20">
+            <div className="rounded-xl border border-purple-200 bg-gradient-to-br from-violet-50 to-purple-100 p-6 dark:border-violet-600 dark:from-violet-900/30 dark:to-purple-800/30">
               <h4 className="mb-4 flex items-center text-lg font-bold text-purple-800 dark:text-purple-300">
                 <span className="mr-2 h-2 w-2 rounded-full bg-purple-500"></span>
                 趣味
@@ -146,7 +146,7 @@ export default function About() {
 
         {/* スキルセクション */}
         <div className="lg:col-span-1">
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-xl dark:border-gray-700 dark:bg-gray-800">
+          <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-amber-50 to-orange-50 p-6 shadow-xl dark:border-amber-600 dark:bg-gradient-to-br dark:from-amber-900/30 dark:to-orange-800/30 dark:text-amber-100">
             <h3 className="mb-6 flex items-center text-2xl font-bold text-gray-900 dark:text-white">
               <span className="mr-3 flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-r from-orange-500 to-red-500 text-sm font-bold text-white">
                 ⚡
@@ -240,7 +240,7 @@ export default function About() {
 
       {/* 経歴セクション */}
       <div className="mt-12">
-        <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-xl dark:border-gray-700 dark:bg-gray-800">
+        <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-indigo-50 to-purple-50 p-8 shadow-xl dark:border-indigo-600 dark:bg-gradient-to-br dark:from-indigo-900/30 dark:to-purple-800/30 dark:text-indigo-100">
           <h3 className="mb-8 flex items-center text-3xl font-bold text-gray-900 dark:text-white">
             <span className="mr-3 flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-sm font-bold text-white">
               📈
