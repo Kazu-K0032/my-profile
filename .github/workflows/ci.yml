@@ -157,10 +157,10 @@ jobs:
             fi
 
             # 基本的なConventional Commits形式をチェック
-            if [[ ! $commit_msg =~ ^(feat|fix|docs|style|refactor|test|chore|ci|build|perf|revert|adj|setup): ]]; then
+            if [[ ! $commit_msg =~ ^(feat|fix|docs|style|refactor|test|chore|ci|build|perf|revert|adj|setup|init): ]]; then
               echo "❌ Invalid commit message format: $commit_msg"
               echo "Expected format: type: description"
-              echo "Valid types: feat, fix, docs, style, refactor, test, chore, ci, build, perf, revert, adj, setup"
+              echo "Valid types: feat, fix, docs, style, refactor, test, chore, ci, build, perf, revert, adj, setup, init"
               exit 1
             fi
           done
