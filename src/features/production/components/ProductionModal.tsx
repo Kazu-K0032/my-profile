@@ -277,11 +277,21 @@ export default function ProductionModal({
             onClick={handleClose}
             aria-label="Close"
             className={cn(
-              "rounded-full p-2 text-sm",
-              "text-black hover:bg-gray-100 dark:text-white dark:hover:bg-gray-800"
+              "inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium",
+              "text-black hover:bg-gray-100 focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:outline-none",
+              "dark:text-white dark:hover:bg-gray-800 dark:focus:ring-offset-0"
             )}
           >
-            ×
+            <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4">
+              <path
+                d="M6 6l12 12M18 6L6 18"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span>閉じる</span>
           </button>
         </div>
         <div className="grid h-[calc(80vh-88px)] gap-8 px-8 pb-6 md:grid-cols-2">
