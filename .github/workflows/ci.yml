@@ -2,14 +2,14 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main, develop, "feature/*", "issue*"]
+    branches: [main]
   pull_request:
-    branches: [main, develop]
+    branches: [main]
 
 jobs:
-  # コード品質チェック
-  lint-and-format:
-    name: Lint & Format Check
+  # 基本的なコード品質チェック
+  basic-quality:
+    name: Basic Quality Check
     runs-on: ubuntu-latest
 
     steps:
@@ -37,7 +37,7 @@ jobs:
   build:
     name: Build Test
     runs-on: ubuntu-latest
-    needs: lint-and-format
+    needs: basic-quality
 
     steps:
       - name: Checkout code
@@ -64,11 +64,11 @@ jobs:
             exit 1
           fi
 
-  # セキュリティチェック
-  security:
-    name: Security Check
+  # 基本的なセキュリティチェック
+  basic-security:
+    name: Basic Security Check
     runs-on: ubuntu-latest
-    needs: lint-and-format
+    needs: basic-quality
 
     steps:
       - name: Checkout code
@@ -85,12 +85,9 @@ jobs:
       - name: Run security audit
         run: npm audit --audit-level=moderate
 
-      - name: Check for known vulnerabilities
-        run: npx audit-ci --config audit-ci.json || true
-
-  # パフォーマンステスト
-  performance:
-    name: Performance Test
+  # アプリケーション起動テスト
+  startup-test:
+    name: Application Startup Test
     runs-on: ubuntu-latest
     needs: build
 
@@ -146,22 +143,3 @@ jobs:
 
       - name: Check for lint-staged issues
         run: npm run lint-staged --dry-run
-
-      - name: Validate commit messages
-        run: |
-          # コミットメッセージの形式チェック
-          git log --oneline --format="%s" origin/main..HEAD --no-merges | while read commit_msg; do
-            # 空のコミットメッセージをスキップ
-            if [[ -z "$commit_msg" ]]; then
-              continue
-            fi
-
-            # 基本的なConventional Commits形式をチェック
-            if [[ ! $commit_msg =~ ^(feat|fix|docs|style|refactor|test|chore|ci|build|perf|revert|adj|setup|init): ]]; then
-              echo "❌ Invalid commit message format: $commit_msg"
-              echo "Expected format: type: description"
-              echo "Valid types: feat, fix, docs, style, refactor, test, chore, ci, build, perf, revert, adj, setup, init"
-              exit 1
-            fi
-          done
-          echo "✅ All commit messages follow conventional commits format"

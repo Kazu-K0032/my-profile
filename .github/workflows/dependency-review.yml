@@ -2,6 +2,7 @@ name: Dependency Review
 
 on:
   pull_request:
+    branches: [main]
     types: [opened, synchronize, reopened]
 
 permissions:
@@ -31,14 +32,19 @@ jobs:
           comment-summary-in-pr: always
         continue-on-error: true
 
-      - name: Fallback Security Check
+      - name: Advanced Security Analysis
         if: failure()
         run: |
-          echo "⚠️  Dependency Review is not available on this repository."
+          echo "⚠️  GitHub Dependency Review is not available."
           echo "💡 To enable dependency review:"
           echo "   1. Go to repository Settings > Security & analysis"
           echo "   2. Enable 'Dependency graph'"
           echo "   3. For private repos, enable 'GitHub Advanced Security'"
           echo ""
-          echo "🔍 Running alternative security check with npm audit..."
-          npm audit --audit-level=moderate || echo "Security audit completed with findings"
+          echo "🔍 Running comprehensive security analysis..."
+          echo "📋 Dependency vulnerability scan:"
+          npm audit --audit-level=moderate --json > audit-report.json || true
+          echo "📋 License compliance check:"
+          npx license-checker --json > license-report.json || true
+          echo "📋 Outdated dependencies:"
+          npm outdated --json > outdated-report.json || true

@@ -2,9 +2,9 @@ name: Code Quality
 
 on:
   push:
-    branches: [main, develop, "feature/*", "issue*"]
+    branches: [main]
   pull_request:
-    branches: [main, develop]
+    branches: [main]
 
 jobs:
   code-quality:
@@ -25,29 +25,36 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run ESLint with detailed output
+      - name: Advanced ESLint Analysis
         run: |
           npm run lint -- --format=json --output-file=eslint-report.json || true
-          npm run lint
+          npm run lint -- --max-warnings=0
 
-      - name: Run Prettier with detailed output
+      - name: Advanced Prettier Analysis
         run: |
           npx prettier --check --write "**/*.{js,jsx,ts,tsx,json,md}" || true
 
-      - name: TypeScript strict check
+      - name: Strict TypeScript Analysis
         run: |
-          npm run type-check -- --strict
+          npm run type-check -- --strict --noEmit
 
       - name: Check for unused dependencies
         run: |
           npx depcheck --json --ignores="eslint,prettier,husky,lint-staged" || true
 
-      - name: Bundle size analysis
+      - name: Advanced Bundle Analysis
         run: |
           npm run build
-          if [ -f ".next/static/chunks/pages/_app-*.js" ]; then
-            echo "Bundle size analysis:"
-            find .next/static/chunks -name "*.js" -exec ls -lh {} \; | head -10
+          echo "📊 Bundle Size Analysis:"
+          if [ -d ".next/static/chunks" ]; then
+            echo "JavaScript bundles:"
+            find .next/static/chunks -name "*.js" -exec ls -lh {} \; | sort -k5 -hr | head -10
+            echo ""
+            echo "CSS bundles:"
+            find .next/static/css -name "*.css" -exec ls -lh {} \; 2>/dev/null | sort -k5 -hr | head -5
+            echo ""
+            echo "Total bundle size:"
+            du -sh .next/static/
           fi
 
       - name: Upload ESLint report
