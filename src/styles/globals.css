@@ -22,43 +22,10 @@
   }
 }
 
-@layer utilities {
-  .dark * {
-    color: white !important;
-  }
-
-  .dark h1,
-  .dark h2,
-  .dark h3,
-  .dark h4,
-  .dark h5,
-  .dark h6 {
-    color: white !important;
-  }
-
-  .dark p,
-  .dark span,
-  .dark div {
-    color: white !important;
-  }
-}
-
 .c-bg-header {
   @apply bg-[var(--c-bg-header)];
 }
 
 .c-bg-primary {
   @apply bg-[var(--c-bg-primary)];
-}
-
-.c-navItem {
-  @apply border-b border-b-transparent transition-colors duration-300 hover:cursor-pointer hover:border-dotted hover:border-b-[#c58a8c] hover:text-[#c58a8c];
-}
-
-.c-date {
-  @apply transition-all duration-300 hover:cursor-pointer hover:border-b-[#c58a8c] hover:text-[#c58a8c] hover:underline hover:decoration-dotted;
-}
-
-.c-link {
-  @apply transition-all duration-300 hover:cursor-pointer hover:border-b-[#c58a8c] hover:text-[#c58a8c] hover:underline hover:decoration-dotted;
 }
