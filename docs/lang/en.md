@@ -23,18 +23,12 @@ cd my-profile
 ### Install dependencies
 
 ```bash
-npm install
-
-# or
 pnpm install
 ```
 
 ### Start the server
 
 ```bash
-npm run dev
-
-# or
 pnpm dev
 ```
 

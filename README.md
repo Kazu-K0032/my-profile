@@ -23,18 +23,12 @@ cd my-profile
 ### 依存関係インストール
 
 ```bash
-npm install
-
-# または
 pnpm install
 ```
 
 ### サーバー起動
 
 ```bash
-npm run dev
-
-# または
 pnpm dev
 ```
 
