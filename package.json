@@ -13,7 +13,9 @@
     "prepare": "husky",
     "audit": "pnpm audit",
     "audit:ci": "npx audit-ci --config audit-ci.json",
-    "audit:fix": "pnpm audit --audit-level=moderate"
+    "audit:fix": "pnpm audit --audit-level=moderate",
+    "check:workflows": "node scripts/check-workflows.js",
+    "test:workflows": "node scripts/test-commands.js"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.14",
@@ -37,6 +39,7 @@
     "eslint-config-next": "15.3.1",
     "eslint-plugin-import": "^2.32.0",
     "husky": "^9.1.7",
+    "js-yaml": "^4.1.0",
     "lint-staged": "^15",
     "postcss": "^8.5.6",
     "prettier": "^3",
