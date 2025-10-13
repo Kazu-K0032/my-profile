@@ -3,8 +3,6 @@
  */
 export interface ProfileInfo {
   name: string;
-  birthYear: number;
-  birthPlace: string;
   description: string;
 }
 
