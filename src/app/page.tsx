@@ -5,6 +5,7 @@ import { NAVIGATION_TABS } from "@/constants/globals.constants";
 import { About } from "@/features/about";
 import { Header } from "@/features/header";
 import { Notes } from "@/features/notes";
+import { Production } from "@/features/production";
 import type { NavigationTabKey } from "@/types/globals.types";
 import { cn } from "@/utils/cn";
 
@@ -28,6 +29,8 @@ export default function Home() {
             <About />
           ) : currentPage === "Notes" ? (
             <Notes />
+          ) : currentPage === "Production" ? (
+            <Production />
           ) : (
             <>
               <h1
