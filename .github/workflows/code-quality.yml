@@ -17,40 +17,35 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: latest
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "pnpm"
+          cache: "npm"
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Run ESLint with detailed output
         run: |
-          pnpm run lint -- --format=json --output-file=eslint-report.json || true
-          pnpm run lint
+          npm run lint -- --format=json --output-file=eslint-report.json || true
+          npm run lint
 
       - name: Run Prettier with detailed output
         run: |
-          pnpm exec prettier --check --write "**/*.{js,jsx,ts,tsx,json,md}" || true
+          npx prettier --check --write "**/*.{js,jsx,ts,tsx,json,md}" || true
 
       - name: TypeScript strict check
         run: |
-          pnpm run type-check -- --strict
+          npm run type-check -- --strict
 
       - name: Check for unused dependencies
         run: |
-          pnpm exec depcheck --json --ignores="eslint,prettier,husky,lint-staged" || true
+          npx depcheck --json --ignores="eslint,prettier,husky,lint-staged" || true
 
       - name: Bundle size analysis
         run: |
-          pnpm run build
+          npm run build
           if [ -f ".next/static/chunks/pages/_app-*.js" ]; then
             echo "Bundle size analysis:"
             find .next/static/chunks -name "*.js" -exec ls -lh {} \; | head -10
