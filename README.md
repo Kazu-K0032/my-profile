@@ -39,3 +39,17 @@ pnpm dev
 ```
 
 ブラウザで `http://localhost:3000` を開いて確認してください。
+
+## 技術スタック
+
+- **フレームワーク**: Next.js 15.3.1
+- **UI**: React 19
+- **スタイリング**: Tailwind CSS v4
+- **言語**: TypeScript
+- **アニメーション**: Framer Motion
+- **テーマ**: next-themes
+
+## 開発環境
+
+- Node.js 18以上
+- npm または pnpm
