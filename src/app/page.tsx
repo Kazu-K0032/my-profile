@@ -4,6 +4,7 @@ import { useState } from "react";
 import { NAVIGATION_TABS } from "@/constants/globals.constants";
 import { About } from "@/features/about";
 import { Header } from "@/features/header";
+import { Notes } from "@/features/notes";
 import type { NavigationTabKey } from "@/types/globals.types";
 import { cn } from "@/utils/cn";
 
@@ -25,6 +26,8 @@ export default function Home() {
         <div className="mx-auto max-w-4xl">
           {currentPage === "About" ? (
             <About />
+          ) : currentPage === "Notes" ? (
+            <Notes />
           ) : (
             <>
               <h1
