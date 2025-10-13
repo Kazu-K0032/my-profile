@@ -8,4 +8,5 @@ export interface QiitaArticle {
   created_at: string;
   url: string;
   title: string;
+  likes_count?: number;
 }

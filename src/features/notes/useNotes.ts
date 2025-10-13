@@ -1,10 +1,19 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import {
   fetchQiitaArticles,
   getCachedArticles,
   cacheArticles,
 } from "@/lib/qiita";
 import type { QiitaArticle } from "@/types/qiita.types";
+import { PAGINATION_CONSTANTS } from "./Notes.constants";
+import type { SortOption } from "./Notes.types";
+import {
+  sortArticles,
+  getCurrentPageArticles,
+  calculateTotalPages,
+  getNextLoadingText,
+  getErrorMessage,
+} from "./Notes.utils";
 
 export const useNotes = () => {
   // Qiita記事
@@ -17,6 +26,8 @@ export const useNotes = () => {
   const [currentPage, setCurrentPage] = useState(1);
   // エラー
   const [error, setError] = useState<string | null>(null);
+  // ソートオプション
+  const [sortOption, setSortOption] = useState<SortOption>("created_at");
 
   /**
    * Qiita記事を取得する
@@ -29,9 +40,7 @@ export const useNotes = () => {
       cacheArticles(data);
     } catch (error) {
       console.error(error);
-      setError(
-        error instanceof Error ? error.message : "予期せぬエラーが発生しました"
-      );
+      setError(getErrorMessage(error));
       setArticles([]);
     } finally {
       setIsLoading(false);
@@ -60,17 +69,8 @@ export const useNotes = () => {
 
     if (isLoading) {
       intervalId = setInterval(() => {
-        setLoadingText((prev) => {
-          switch (prev) {
-            case ".":
-              return "..";
-            case "..":
-              return "...";
-            default:
-              return ".";
-          }
-        });
-      }, 500);
+        setLoadingText((prev) => getNextLoadingText(prev));
+      }, PAGINATION_CONSTANTS.LOADING_INTERVAL);
     }
 
     return () => {
@@ -78,11 +78,21 @@ export const useNotes = () => {
     };
   }, [isLoading]);
 
-  const articlesPerPage = 10;
-  const totalPages = Math.ceil(articles.length / articlesPerPage);
-  const startIndex = (currentPage - 1) * articlesPerPage;
-  const endIndex = startIndex + articlesPerPage;
-  const currentArticles = articles.slice(startIndex, endIndex);
+  // ソートされた記事を取得
+  const sortedArticles = useMemo(() => {
+    return sortArticles(articles, sortOption);
+  }, [articles, sortOption]);
+
+  const articlesPerPage = PAGINATION_CONSTANTS.ARTICLES_PER_PAGE;
+  const totalPages = calculateTotalPages(
+    sortedArticles.length,
+    articlesPerPage
+  );
+  const currentArticles = getCurrentPageArticles(
+    sortedArticles,
+    currentPage,
+    articlesPerPage
+  );
 
   /**
    * 前のページに移動する
@@ -106,6 +116,8 @@ export const useNotes = () => {
     error,
     currentArticles,
     totalPages,
+    sortOption,
+    setSortOption,
     handlePrevPage,
     handleNextPage,
     fetchQiitaData,
