@@ -150,7 +150,12 @@ jobs:
       - name: Validate commit messages
         run: |
           # コミットメッセージの形式チェック
-          git log --oneline --format="%s" origin/main..HEAD | while read commit_msg; do
+          git log --oneline --format="%s" origin/main..HEAD --no-merges | while read commit_msg; do
+            # 空のコミットメッセージをスキップ
+            if [[ -z "$commit_msg" ]]; then
+              continue
+            fi
+
             # 基本的なConventional Commits形式をチェック
             if [[ ! $commit_msg =~ ^(feat|fix|docs|style|refactor|test|chore|ci|build|perf|revert): ]]; then
               echo "❌ Invalid commit message format: $commit_msg"
