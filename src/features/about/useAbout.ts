@@ -14,7 +14,6 @@ export const useAbout = () => {
     setMounted(true);
   }, []);
 
-  // globals.constants.tsからAboutタブの情報を取得
   const aboutTab = NAVIGATION_TABS.find((tab) => tab.key === "About");
   const mainTitle = aboutTab?.title || "About";
   const subTitle = aboutTab?.subtitle || "私について";
