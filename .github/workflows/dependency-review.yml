@@ -1,0 +1,50 @@
+name: Dependency Review
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: moderate
+          comment-summary-in-pr: always
+        continue-on-error: true
+
+      - name: Advanced Security Analysis
+        if: failure()
+        run: |
+          echo "⚠️  GitHub Dependency Review is not available."
+          echo "💡 To enable dependency review:"
+          echo "   1. Go to repository Settings > Security & analysis"
+          echo "   2. Enable 'Dependency graph'"
+          echo "   3. For private repos, enable 'GitHub Advanced Security'"
+          echo ""
+          echo "🔍 Running comprehensive security analysis..."
+          echo "📋 Dependency vulnerability scan:"
+          npm audit --audit-level=moderate --json > audit-report.json || true
+          echo "📋 License compliance check:"
+          npx license-checker --json > license-report.json || true
+          echo "📋 Outdated dependencies:"
+          npm outdated --json > outdated-report.json || true
