@@ -1,4 +1,4 @@
-import type { ProductionItem } from "./production.types";
+import type { ProductionItem } from "./Production.types";
 
 /**
  * プロダクションアイテムの定数
@@ -22,7 +22,6 @@ export const PRODUCTION_ITEMS: ProductionItem[] = [
       images: ["/common/population-trend-graph-app.svg"],
       pages: [
         {
-          type: "markdown",
           title: "【プロジェクト概要・開発背景】",
           content: [
             "## 概要",
@@ -32,7 +31,6 @@ export const PRODUCTION_ITEMS: ProductionItem[] = [
           ],
         },
         {
-          type: "markdown",
           title: "【使用技術・ツール】",
           content: [
             "### 言語",
@@ -44,7 +42,6 @@ export const PRODUCTION_ITEMS: ProductionItem[] = [
           ],
         },
         {
-          type: "markdown",
           title: "【開発プロセス・自分の役割】",
           content: [
             "本プロジェクトは、個人で開発を進めました。開発にあたり、特に以下の2点を意識しました。",
@@ -56,7 +53,6 @@ export const PRODUCTION_ITEMS: ProductionItem[] = [
           ],
         },
         {
-          type: "markdown",
           title: "【プロジェクトを通した学び】",
           content: [
             "本プロジェクトを通じて、特に『型定義の重要性』に対する意識が大きく変わりました。",
@@ -65,9 +61,8 @@ export const PRODUCTION_ITEMS: ProductionItem[] = [
           ],
         },
         {
-          type: "markdown",
           title: "【ドキュメントおよび参考資料】",
-          content: "- [Chart.js](https://www.chartjs.org/)",
+          content: ["- [Chart.js](https://www.chartjs.org/)"],
         },
       ],
       demoUrl: "https://population-trend-graph-app.vercel.app/",
@@ -99,34 +94,49 @@ export const PRODUCTION_ITEMS: ProductionItem[] = [
       images: ["/common/scriptOutputSystem.svg"],
       pages: [
         {
-          type: "markdown",
           title: "【プロジェクト概要・開発背景】",
-          content:
-            "本プロジェクトでは、あにまんchのスレッドコメントを、YMMの台本形式でスプレッドシートに出力する機能を開発しました。\n私は趣味でYouTubeの動画制作を行っており、その一環として制作プロセスの一部を自動化したいと考え、今回の開発に至りました。\n\n※あにまんchは、アニメや漫画に関する感想や意見を共有できる掲示板サイトです。",
+          content: [
+            "本プロジェクトでは、あにまんchのスレッドコメントを、YMMの台本形式でスプレッドシートに出力する機能を開発しました。",
+            "私は趣味でYouTubeの動画制作を行っており、その一環として制作プロセスの一部を自動化したいと考え、今回の開発に至りました。",
+            "",
+            "※あにまんchは、アニメや漫画に関する感想や意見を共有できる掲示板サイトです。",
+          ],
         },
         {
-          type: "markdown",
           title: "【使用技術・ツール】",
-          content:
-            "### 言語\n\nJavaScript\n\n### ツール\n\nスプレッドシート, Google Apps Script, Git/GitHub\n\n### 技術選定\n\n開発当初はGASを頻繁に使用しており、GASを使用したプロダクトを作りたいと思い、今回のプロジェクトでも採用しました。",
+          content: [
+            "### 言語",
+            "",
+            "JavaScript",
+            "",
+            "### ツール",
+            "",
+            "スプレッドシート, Google Apps Script, Git/GitHub",
+            "",
+            "### 技術選定",
+            "",
+            "開発当初はGASを頻繁に使用しており、GASを使用したプロダクトを作りたいと思い、今回のプロジェクトでも採用しました。",
+          ],
         },
         {
-          type: "markdown",
           title: "【開発プロセス・自分の役割】",
-          content:
-            "本プロジェクトは、すべての開発工程を一人で担当しました。\nまず、動画制作の流れをリストアップし、その中でGASを活用できる部分を整理しました。その後、GASを用いて自動化を進め、GASで対応できない動画制作の領域については、別途PHPを用いて開発を行いました。",
+          content: [
+            "本プロジェクトは、すべての開発工程を一人で担当しました。",
+            "まず、動画制作の流れをリストアップし、その中でGASを活用できる部分を整理しました。その後、GASを用いて自動化を進め、GASで対応できない動画制作の領域については、別途PHPを用いて開発を行いました。",
+          ],
         },
         {
-          type: "markdown",
           title: "【プロジェクトを通した学び】",
-          content:
-            "本プロジェクトを通じて、コードの整理の重要性を実感しました。\n開発当初は、深く考えずにコードを書いていたため、機能追加のたびにコードが冗長化し、結果としてスパゲッティコードになってしまいました。そこで、一度コードを整理し、処理を役割ごとに分けて再構築することで、可読性や保守性の向上につなげることができました。",
+          content: [
+            "本プロジェクトを通じて、コードの整理の重要性を実感しました。",
+            "開発当初は、深く考えずにコードを書いていたため、機能追加のたびにコードが冗長化し、結果としてスパゲッティコードになってしまいました。そこで、一度コードを整理し、処理を役割ごとに分けて再構築することで、可読性や保守性の向上につなげることができました。",
+          ],
         },
         {
-          type: "markdown",
           title: "【ドキュメントおよび参考資料】",
-          content:
+          content: [
             "- [Qiita, 「【Google App Script】Parserライブラリでwebスクレイピングする方法」](https://qiita.com/tk226/items/c806fc2fdff9115d4473)",
+          ],
         },
       ],
       demoUrl:
@@ -152,33 +162,50 @@ export const PRODUCTION_ITEMS: ProductionItem[] = [
       images: ["/common/gsread.svg"],
       pages: [
         {
-          type: "markdown",
           title: "【プロジェクト概要・開発背景】",
-          content:
-            "[GeekSalon](https://geek-salon.com/)で得た知識を、コースの枠を超えて共有できるアプリを開発しました。\n\n当初はGeekSalonに参加しており、授業の一環として開発しました。プロダクトを通じ、自身の所属するコースの垣根を越えて知識の共有ができるようにしたいと考え、自身のコースで学習したVue.jsおよびFirebaseを使用して開発しました。",
+          content: [
+            "[GeekSalon](https://geek-salon.com/)で得た知識を、コースの枠を超えて共有できるアプリを開発しました。",
+            "",
+            "当初はGeekSalonに参加しており、授業の一環として開発しました。プロダクトを通じ、自身の所属するコースの垣根を越えて知識の共有ができるようにしたいと考え、自身のコースで学習したVue.jsおよびFirebaseを使用して開発しました。",
+          ],
         },
         {
-          type: "markdown",
           title: "【使用技術・ツール】",
-          content:
-            "### 言語\n\nHTML/CSS(SCSS), JavaScript(Vue.js)\n\n### ツール\n\nFirebase, Git/GitHub\n\n### 技術選定\n\nGeekSalon受講時に学んだ言語およびツールを活用し、実践的な開発経験を積むことを目的としました。",
+          content: [
+            "### 言語",
+            "",
+            "HTML/CSS(SCSS), JavaScript(Vue.js)",
+            "",
+            "### ツール",
+            "",
+            "Firebase, Git/GitHub",
+            "",
+            "### 技術選定",
+            "",
+            "GeekSalon受講時に学んだ言語およびツールを活用し、実践的な開発経験を積むことを目的としました。",
+          ],
         },
         {
-          type: "markdown",
           title: "【開発プロセス・自分の役割】",
-          content:
-            "開発は私を含めた3名のチームで進め、GeekSalonのメンター1名にサポートいただきました。\n開発期間は1ヶ月で、週2回のDiscordミーティングを通じて、Notionを活用しながら課題や機能要件を整理しました。\n\n私はチームリーダーとして、メンバーの稼働時間を管理し、タスクの振り分けを担当しました。\n\nチーム開発終了後には、サイトの改修作業を実施しました。\n改修の際には、SCSSの導入やIssue/PRを活用した開発を行い、エラーやバグの修正、UI/UXを考慮した機能の追加を行いました。",
+          content: [
+            "開発は私を含めた3名のチームで進め、GeekSalonのメンター1名にサポートいただきました。",
+            "開発期間は1ヶ月で、週2回のDiscordミーティングを通じて、Notionを活用しながら課題や機能要件を整理しました。",
+            "",
+            "私はチームリーダーとして、メンバーの稼働時間を管理し、タスクの振り分けを担当しました。",
+            "",
+            "チーム開発終了後には、サイトの改修作業を実施しました。",
+            "改修の際には、SCSSの導入やIssue/PRを活用した開発を行い、エラーやバグの修正、UI/UXを考慮した機能の追加を行いました。",
+          ],
         },
         {
-          type: "markdown",
           title: "【プロジェクトを通した学び】",
-          content:
+          content: [
             "要件定義から開発、デプロイまでの一連の流れを経験することで、開発プロセス全体の理解を深めることができました。",
+          ],
         },
         {
-          type: "markdown",
           title: "【ドキュメントおよび参考資料】",
-          content: "特になし",
+          content: ["特になし"],
         },
       ],
       demoUrl: "https://team3-sky.web.app",

@@ -1,35 +1,85 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { cn } from "@/utils/cn";
+import type { ProductionMarkdownPage } from "../Production.types";
 
-interface ProductionModalProps {
-  isOpen: boolean; // モーダルが開いているかどうか
-  onClose: () => void; // モーダルを閉じる
-  title?: string; // モーダルのタイトル
-  leftSlot?: React.ReactNode; // モーダルの左側のコンテンツ
-  rightSlot?: React.ReactNode; // モーダルの右側のコンテンツ
-  footerSlot?: React.ReactNode; // 互換用
-  pages?: Array<
-    | {
-        type: "overview";
-        title?: string;
-        description?: string;
-        technologies?: string[];
-        features?: string[];
-      }
-    | { type: "markdown"; title: string; content: string | string[] }
-  >;
+/**
+ * インラインリンクをレンダリング
+ * - Markdown記法のリンクをレンダリング
+ * @param text
+ * @returns
+ * @example
+ * ```
+ * [リンク](URL)
+ * ```
+ * → <a href="URL">リンク</a>
+ */
+function renderInline(text: string): React.ReactNode {
+  const parts: React.ReactNode[] = [];
+  // リンクにあたる正規表現
+  const linkRe = /\[([^\]]+)\]\(([^)]+)\)/g;
+  // 最後のインデックス
+  let lastIndex = 0;
+  // マッチング結果
+  let regexResult: RegExpExecArray | null;
+  //文字列中の Markdown リンクを順次にリンクタグに変換する
+  while ((regexResult = linkRe.exec(text)) !== null) {
+    if (regexResult.index > lastIndex) {
+      parts.push(text.slice(lastIndex, regexResult.index));
+    }
+    parts.push(
+      <a
+        key={`a-${parts.length}`}
+        href={regexResult[2]}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 underline"
+      >
+        {regexResult[1]}
+      </a>
+    );
+    lastIndex = regexResult.index + regexResult[0].length;
+  }
+  if (lastIndex < text.length) parts.push(text.slice(lastIndex));
+  return <>{parts}</>;
 }
 
-function renderMarkdownLikeContent(content?: string | string[]) {
+/**
+ * マークダウン風のコンテンツをレンダリング
+ * @param content
+ * @returns
+ * @example
+ * ```
+ * [リンク](URL)
+ * ## 見出し
+ * - 箇条書き
+ * ### サブ見出し
+ * - サブ箇条書き
+ * ```
+ * → <a href="URL">リンク</a>
+ * <h2>見出し</h2>
+ * <ul>
+ *   <li>箇条書き</li>
+ * </ul>
+ * <h3>サブ見出し</h3>
+ * <ul>
+ *   <li>サブ箇条書き</li>
+ * </ul>
+ */
+function renderMarkdownLikeContent(content?: string[]) {
   if (!content) return null;
-  const lines = Array.isArray(content) ? content : content.split("\n");
+  // 行単位で解釈
+  const lines = content;
+  // 要素
   const elements: React.ReactNode[] = [];
+  // 段落
   let paragraph: string[] = [];
+  // 箇条書き
   let listItems: string[] = [];
 
   const flush = () => {
+    // 段落があれば、パラグラフ要素としてレンダリング
     if (paragraph.length) {
       elements.push(
         <p
@@ -41,6 +91,7 @@ function renderMarkdownLikeContent(content?: string | string[]) {
       );
       paragraph = [];
     }
+    // 箇条書きがあれば、リスト要素としてレンダリング
     if (listItems.length) {
       elements.push(
         <ul
@@ -56,25 +107,30 @@ function renderMarkdownLikeContent(content?: string | string[]) {
     }
   };
 
+  // 行単位で解釈
   lines.forEach((raw) => {
     const line = raw.replace(/\s+$/, "");
     if (line.trim() === "") {
+      // 空行の場合は、フラッシュ
       flush();
       return;
     }
-    // bullet list: - text or * text
+    // 箇条書きの場合
     const li = line.match(/^\s*[-*]\s+(.+)/);
     if (li) {
-      // starting or continuing list
+      // 段落があれば、フラッシュ
       if (paragraph.length) flush();
       listItems.push(li[1]);
       return;
-    } else {
-      // if list was open and a non-list line appears, flush list
-      if (listItems.length) flush();
+    } else if (listItems.length) {
+      // 箇条書きがあれば、フラッシュ
+      flush();
     }
+
+    // 見出し2の場合
     const h2 = line.match(/^##\s+(.+)/);
     if (h2) {
+      // 見出し2があれば、フラッシュ
       flush();
       elements.push(
         <h2
@@ -86,8 +142,10 @@ function renderMarkdownLikeContent(content?: string | string[]) {
       );
       return;
     }
+    // 見出し3の場合
     const h3 = line.match(/^###\s+(.+)/);
     if (h3) {
+      // 見出し3があれば、フラッシュ
       flush();
       elements.push(
         <h3
@@ -99,8 +157,10 @@ function renderMarkdownLikeContent(content?: string | string[]) {
       );
       return;
     }
+    // 見出し4の場合
     const h4 = line.match(/^####\s+(.+)/);
     if (h4) {
+      // 見出し4があれば、フラッシュ
       flush();
       elements.push(
         <h4
@@ -112,38 +172,22 @@ function renderMarkdownLikeContent(content?: string | string[]) {
       );
       return;
     }
+    // 段落の場合
     paragraph.push(line);
   });
 
+  // フラッシュ
   flush();
   return <div className="space-y-3">{elements}</div>;
 }
 
-// inline: convert [text](url) to <a>
-function renderInline(text: string): React.ReactNode {
-  const parts: React.ReactNode[] = [];
-  const linkRe = /\[([^\]]+)\]\(([^)]+)\)/g;
-  let lastIndex = 0;
-  let m: RegExpExecArray | null;
-  while ((m = linkRe.exec(text)) !== null) {
-    if (m.index > lastIndex) {
-      parts.push(text.slice(lastIndex, m.index));
-    }
-    parts.push(
-      <a
-        key={`a-${parts.length}`}
-        href={m[2]}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-600 underline"
-      >
-        {m[1]}
-      </a>
-    );
-    lastIndex = m.index + m[0].length;
-  }
-  if (lastIndex < text.length) parts.push(text.slice(lastIndex));
-  return <>{parts}</>;
+interface ProductionModalProps {
+  isOpen: boolean; // モーダルが開いているかどうか
+  onClose: () => void; // モーダルを閉じる
+  title?: string; // モーダルのタイトル
+  leftSlot?: React.ReactNode; // モーダルの左側のコンテンツ
+  rightSlot?: React.ReactNode; // モーダルの右側のコンテンツ
+  pages?: ProductionMarkdownPage[]; // モーダルのページ
 }
 
 export default function ProductionModal({
@@ -152,34 +196,47 @@ export default function ProductionModal({
   title,
   leftSlot,
   rightSlot,
-  footerSlot: _footerSlot,
   pages = [],
 }: ProductionModalProps) {
+  // モーダルが開いているかどうか
   const [visible, setVisible] = useState(false);
+  // ページインデックス
   const [pageIndex, setPageIndex] = useState(0);
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") handleClose();
-    };
-    window.addEventListener("keydown", onKey);
-    const id = window.setTimeout(() => setVisible(true), 0);
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      window.clearTimeout(id);
-      setVisible(false);
-    };
-  }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
-
-  const handleClose = () => {
-    // 開閉アニメーション用にフェードアウトしてから親へ通知
+  // モーダルを閉じる（アニメーション後に実行）
+  const handleClose = useCallback(() => {
     setVisible(false);
     window.setTimeout(() => {
       onClose();
     }, 200);
-  };
+  }, [onClose]);
+
+  /**
+   * モーダルを開く
+   */
+  useEffect(() => {
+    if (!isOpen) return;
+    // エスケープキーでモーダルを閉じる
+    const controller = new AbortController();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") handleClose();
+    };
+    window.addEventListener("keydown", onKey, { signal: controller.signal });
+    // モーダルを開く
+    const raf = window.requestAnimationFrame(() => setVisible(true));
+    return () => {
+      controller.abort();
+      window.cancelAnimationFrame(raf);
+      setVisible(false);
+    };
+  }, [isOpen, handleClose]);
+
+  if (!isOpen) return null;
+
+  // 1ページ目は rightSlot（概要）
+  const totalPages = pages.length + 1;
+  // 現在のページ
+  const currentPage = pageIndex > 0 ? pages[pageIndex - 1] : undefined;
 
   return (
     <div
@@ -234,93 +291,24 @@ export default function ProductionModal({
           <div className="relative md:border-l md:border-gray-200 md:pl-8 dark:md:border-neutral-800">
             <div className="flex h-full flex-col">
               <div className="flex-1 overflow-y-auto pr-2">
-                {pageIndex === 0 || pages.length === 0
-                  ? rightSlot
-                  : (() => {
-                      const current = pages[pageIndex - 1];
-                      if (!current) return null;
-                      if (current.type === "overview") {
-                        return (
-                          <div className="space-y-6">
-                            {current.title && (
-                              <div className="text-base font-bold text-black dark:text-white">
-                                {current.title}
-                              </div>
-                            )}
-                            {current.description && (
-                              <p className="text-sm leading-7 text-gray-700 dark:text-gray-200">
-                                {current.description}
-                              </p>
-                            )}
-                            {current.technologies && (
-                              <div>
-                                <div className="mb-2 text-base font-bold text-black dark:text-white">
-                                  使用技術
-                                </div>
-                                <div className="flex flex-wrap gap-2">
-                                  {current.technologies.map((t) => (
-                                    <span
-                                      key={t}
-                                      className="rounded-full bg-green-100 px-4 py-1 text-xs font-semibold text-green-800 dark:bg-green-900 dark:text-green-200"
-                                    >
-                                      {t}
-                                    </span>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-                            {current.features && (
-                              <div>
-                                <div className="mb-2 text-base font-bold text-black dark:text-white">
-                                  主な機能
-                                </div>
-                                <ul className="space-y-2">
-                                  {current.features.map((feat, i) => (
-                                    <li
-                                      key={i}
-                                      className="flex items-center text-sm leading-6 text-gray-700 dark:text-gray-200"
-                                    >
-                                      <svg
-                                        className="mr-2 h-4 w-4 flex-shrink-0 text-green-500"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                      >
-                                        <path
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                          strokeWidth={2}
-                                          d="M5 13l4 4L19 7"
-                                        />
-                                      </svg>
-                                      <span className="flex-1">{feat}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                          </div>
-                        );
-                      }
-                      if (current.type === "markdown") {
-                        return (
-                          <div className="max-w-none space-y-4">
-                            {current.title && (
-                              <h2 className="text-lg font-bold text-black dark:text-white">
-                                {current.title}
-                              </h2>
-                            )}
-                            {renderMarkdownLikeContent(current.content)}
-                          </div>
-                        );
-                      }
-                      return null;
-                    })()}
+                {pageIndex === 0 || pages.length === 0 ? (
+                  rightSlot
+                ) : currentPage ? (
+                  <div className="max-w-none space-y-4">
+                    {currentPage.title && (
+                      <h2 className="text-lg font-bold text-black dark:text-white">
+                        {currentPage.title}
+                      </h2>
+                    )}
+                    {renderMarkdownLikeContent(currentPage.content)}
+                  </div>
+                ) : null}
               </div>
               <div className="sticky bottom-0 z-10 py-3 backdrop-blur dark:border-neutral-800 dark:bg-neutral-900/80">
                 <div className="relative flex items-center justify-between gap-3">
                   <button
                     type="button"
+                    // 前のページに移動
                     onClick={() => setPageIndex((p) => Math.max(0, p - 1))}
                     disabled={pageIndex === 0}
                     className={cn(
@@ -335,23 +323,20 @@ export default function ProductionModal({
                   </button>
                   <span className="pointer-events-none absolute left-1/2 flex max-w-[70%] -translate-x-1/2 items-center gap-1 text-center text-sm font-medium text-gray-600 dark:text-gray-300">
                     <span className="truncate">
-                      {pageIndex === 0
-                        ? "概要"
-                        : pages[pageIndex - 1]?.title ||
-                          (pages[pageIndex - 1]?.type === "overview"
-                            ? "概要"
-                            : "")}
+                      {pageIndex === 0 ? "概要" : currentPage?.title || ""}
                     </span>
-                    <span className="shrink-0">{`(${pageIndex + 1}/${pages.length + 1})`}</span>
+                    <span className="shrink-0">{`(${pageIndex + 1}/${totalPages})`}</span>
                   </span>
                   <button
                     type="button"
+                    // 次のページに移動
                     onClick={() => {
-                      const total = pages.length + 1;
-                      if (pageIndex >= total - 1) {
+                      if (pageIndex >= totalPages - 1) {
+                        // 最後のページの場合は、モーダルを閉じる
                         handleClose();
                       } else {
-                        setPageIndex((p) => Math.min(total - 1, p + 1));
+                        // 次のページに移動
+                        setPageIndex((p) => Math.min(totalPages - 1, p + 1));
                       }
                     }}
                     className={cn(

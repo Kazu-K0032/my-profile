@@ -1,5 +1,5 @@
 /**
- * プロダクションアイテム
+ * プロダクションアイテム（一覧・カード表示で使用）
  */
 export interface ProductionItem {
   id: string; // ID
@@ -20,21 +20,22 @@ export interface ProductionItem {
 
 /**
  * プロダクションモーダルコンテンツ
+ * - 1ページ目は呼び出し側で概要UIを描画
+ * - 2ページ目以降は pages の内容を順番に表示
  */
 export interface ProductionModalContent {
   longDescription?: string; // 長文説明
-  images?: string[];
-  demoUrl?: string;
-  repoUrl?: string;
-  pages?: ProductionModalPage[];
+  images?: string[]; // 画像（左側のギャラリー等に利用）
+  demoUrl?: string; // デモURL
+  repoUrl?: string; // リポジトリURL
+  pages?: ProductionMarkdownPage[]; // 2ページ目以降のページ情報
 }
 
-export type ProductionModalPage =
-  | {
-      type: "overview";
-      title?: string;
-      description?: string;
-      technologies?: string[];
-      features?: string[];
-    }
-  | { type: "markdown"; title: string; content: string | string[] };
+/**
+ * 2ページ目以降に表示するページ: Markdown型
+ * - content に Markdown（リンク/箇条書き/見出しに対応）
+ */
+export interface ProductionMarkdownPage {
+  title: string;
+  content: string[];
+}

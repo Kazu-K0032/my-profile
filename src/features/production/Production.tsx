@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/utils/cn";
 import { ProductionModal } from "./components";
@@ -44,12 +45,14 @@ export default function Production() {
                 className="grid cursor-pointer grid-cols-1 gap-0 md:grid-cols-12"
               >
                 {/* 左：サムネイル */}
-                <div className="md:col-span-5">
-                  <img
+                <div className="relative md:col-span-5">
+                  <Image
                     src={item.thumbnailUrl || item.modal?.images?.[0] || ""}
                     alt={item.title}
-                    loading="lazy"
-                    className="h-full w-full rounded-l-xl object-cover md:rounded-l-xl md:rounded-r-none"
+                    fill
+                    sizes="(min-width: 768px) 40vw, 100vw"
+                    className="rounded-l-xl object-cover md:rounded-l-xl md:rounded-r-none"
+                    priority={false}
                   />
                 </div>
                 {/* 右：本文 */}
@@ -103,17 +106,17 @@ export default function Production() {
                         aria-label="GitHub Repository"
                         className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-700 transition hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
                       >
-                        <svg
-                          viewBox="0 0 24 24"
+                        <Image
+                          src="/icon/icon_github.svg"
+                          alt="GitHub"
+                          width={20}
+                          height={20}
                           className="h-5 w-5"
-                          fill="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.35-1.76-1.35-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.86 1.25 1.86 1.25 1.08 1.85 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.9 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.58-2.81 5.6-5.49 5.9.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 .5z" />
-                        </svg>
+                          priority={false}
+                        />
                       </a>
                     )}
-                    {/* otherSite アイコン群 */}
+                    {/* 他サイトアイコン */}
                     {item.otherSite && item.otherSite.length > 0 && (
                       <div className="flex items-center gap-2">
                         {item.otherSite.map((site) => (
@@ -126,11 +129,13 @@ export default function Production() {
                             title={site.siteTtl}
                             className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-700 transition hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
                           >
-                            <img
+                            <Image
                               src={site.siteIconPath}
                               alt={site.siteTtl}
-                              loading="lazy"
+                              width={20}
+                              height={20}
                               className="h-5 w-5"
+                              priority={false}
                             />
                           </a>
                         ))}
@@ -165,15 +170,18 @@ export default function Production() {
           pages={selectedItem.modal?.pages}
           leftSlot={
             <div>
-              <img
+              <Image
                 src={
                   selectedItem.modal?.images?.[0] ||
                   selectedItem.thumbnailUrl ||
                   ""
                 }
                 alt={selectedItem.title}
-                loading="lazy"
-                className="w-full rounded-xl border border-gray-200/70 shadow-sm dark:border-neutral-800/70"
+                width={1200}
+                height={800}
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="h-auto w-full rounded-xl border border-gray-200/70 shadow-sm dark:border-neutral-800/70"
+                priority={false}
               />
             </div>
           }
@@ -261,7 +269,6 @@ export default function Production() {
               )}
             </div>
           }
-          footerSlot={<></>}
         />
       )}
     </section>

@@ -1,26 +1,34 @@
-import { useCallback, useMemo, useState } from "react";
+import { useState } from "react";
 import { PRODUCTION_ITEMS } from "./Production.constants";
-import type { ProductionItem } from "./production.types";
+import type { ProductionItem } from "./Production.types";
 
 export const useProduction = () => {
+  // 選択されたアイテムのID
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  // モーダルが開いているかどうか
   const [isOpen, setIsOpen] = useState(false);
 
-  const items = useMemo(() => PRODUCTION_ITEMS, []);
-  const selectedItem = useMemo<ProductionItem | undefined>(
-    () => items.find((i) => i.id === selectedId),
-    [items, selectedId]
+  const items = PRODUCTION_ITEMS;
+  const selectedItem: ProductionItem | undefined = items.find(
+    (i) => i.id === selectedId
   );
 
-  const openModal = useCallback((id: string) => {
+  /**
+   * モーダルを開く
+   * @param id - アイテムのID
+   */
+  const openModal = (id: string) => {
     setSelectedId(id);
     setIsOpen(true);
-  }, []);
+  };
 
-  const closeModal = useCallback(() => {
+  /**
+   * モーダルを閉じる
+   */
+  const closeModal = () => {
     setIsOpen(false);
     setSelectedId(null);
-  }, []);
+  };
 
   return { items, selectedItem, isOpen, openModal, closeModal };
 };
