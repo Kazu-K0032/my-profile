@@ -1,6 +1,6 @@
 {
   "name": "next-template",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,7 +15,8 @@
     "audit:ci": "npx audit-ci --config audit-ci.json",
     "audit:fix": "pnpm audit --audit-level=moderate",
     "check:workflows": "node scripts/check-workflows.js",
-    "test:workflows": "node scripts/test-commands.js"
+    "test:workflows": "node scripts/test-commands.js",
+    "release": "standard-version"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.14",
@@ -26,6 +27,7 @@
     "next-themes": "^0.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "standard-version": "^9.5.0",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.14"
   },
