@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import Loading from "@/components/Loading";
 import { NAVIGATION_TABS } from "@/constants/globals.constants";
 import { About } from "@/features/about";
@@ -15,9 +15,12 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState<NavigationTabKey>("About");
   const [isInitialized, setIsInitialized] = useState(false);
 
-  const handleNavClick = (page: NavigationTabKey) => {
+  /**
+   * ナビゲーションクリックハンドラー
+   */
+  const handleNavClick = useCallback((page: NavigationTabKey) => {
     setCurrentPage(page);
-  };
+  }, []);
 
   /**
    * コンポーネントマウント時にlocalStorageからタブを復元
@@ -34,11 +37,15 @@ export default function Home() {
    * タブ変更時に localStorage に保存
    */
   useEffect(() => {
-    saveTab(currentPage);
-  }, [currentPage]);
+    if (isInitialized) {
+      saveTab(currentPage);
+    }
+  }, [currentPage, isInitialized]);
 
   // 現在のタブ情報を取得
-  const currentTab = NAVIGATION_TABS.find((tab) => tab.key === currentPage);
+  const currentTab = useMemo(() => {
+    return NAVIGATION_TABS.find((tab) => tab.key === currentPage);
+  }, [currentPage]);
 
   // 初期化が完了するまでローディング表示
   if (!isInitialized) {
