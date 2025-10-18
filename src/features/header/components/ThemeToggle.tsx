@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { THEME_MODES } from "@/constants/globals.constants";
-import { getThemeToggleClasses, themeToggleStyles } from "../header.styles";
+import { getThemeToggleClasses, themeToggleStyles } from "../Header.styles";
 
 /**
  * テーマ切り替えボタンコンポーネント
@@ -28,7 +28,6 @@ export default function ThemeToggle() {
     return (
       <button className={themeToggleStyles.placeholder}>
         <span className="text-lg">☀️</span>
-        <span className="text-sm">Light</span>
       </button>
     );
   }
@@ -38,7 +37,6 @@ export default function ThemeToggle() {
   return (
     <button onClick={toggleTheme} className={getThemeToggleClasses(isDark)}>
       <span className="text-lg">{isDark ? "🌙" : "☀️"}</span>
-      <span className="text-sm">{isDark ? "Dark" : "Light"}</span>
     </button>
   );
 }

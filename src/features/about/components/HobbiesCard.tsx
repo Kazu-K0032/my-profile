@@ -1,16 +1,18 @@
 "use client";
 
 import Image from "next/image";
+import { getIconSize } from "@/styles/DesignSystem.styles";
 import { HOBBIES } from "../About.constants";
+import { aboutStyles } from "../About.styles";
 import { useAbout } from "../useAbout";
 
 export default function HobbiesCard() {
   const { resolvedTheme, mounted } = useAbout();
 
   return (
-    <div className="rounded-xl border border-purple-200 bg-gradient-to-br from-violet-50 to-purple-100 p-6 dark:border-violet-600 dark:from-violet-900/30 dark:to-purple-800/30">
-      <h4 className="mb-4 flex items-center text-lg font-bold text-purple-800 dark:text-purple-300">
-        <span className="mr-2 h-2 w-2 rounded-full bg-purple-500"></span>
+    <div className={aboutStyles.subCard}>
+      <h4 className={aboutStyles.subCardTitle}>
+        <span className="section-dot mr-2"></span>
         趣味
       </h4>
       <ul className="space-y-3">
@@ -27,7 +29,7 @@ export default function HobbiesCard() {
               alt={hobby.alt}
               width={24}
               height={24}
-              className="h-6 w-6 dark:invert"
+              className={`${getIconSize("xl")} dark:invert`}
             />
             <span className="text-sm text-gray-700 dark:text-gray-300">
               {hobby.name}

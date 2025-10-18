@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { NAVIGATION_TABS } from "@/constants/globals.constants";
 import type { NavigationTabKey } from "@/types/globals.types";
-import { getNavigationButtonClasses, navigationStyles } from "../header.styles";
+import { getNavigationButtonClasses, navigationStyles } from "../Header.styles";
 
 interface NavigationProps {
   onNavClick: (page: NavigationTabKey) => void;

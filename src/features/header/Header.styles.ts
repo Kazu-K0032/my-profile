@@ -17,8 +17,8 @@ export const headerStyles = {
  * テーマトグルボタンのスタイル
  */
 export const themeToggleStyles = {
-  base: "fixed right-4 top-2 z-50 flex select-none items-center gap-2 rounded-full px-4 py-2 font-medium backdrop-blur-md transition-all duration-300 w-24 justify-center",
-  dark: "bg-gray-800/70 text-gray-200 shadow-lg shadow-gray-800/50 hover:bg-gray-700/70",
+  base: "fixed right-4 top-2 z-50 flex select-none items-center gap-2 rounded-full px-4 py-2 font-medium backdrop-blur-md transition-all duration-300 w-12 justify-center cursor-pointer",
+  dark: "bg-gray-800/70 text-gray-200 shadow-lg shadow-gray-800/50 hover:bg-gray-700/70 border border-teal-300/50",
   light:
     "bg-white/70 text-gray-800 shadow-lg shadow-gray-300/50 hover:bg-gray-50/70",
   placeholder:
@@ -34,8 +34,8 @@ export const navigationStyles = {
   button: {
     base: "relative select-none px-3 py-1 transition-all duration-200 cursor-pointer min-h-[2.5rem] flex items-center justify-center font-medium",
     active: cn(
-      "text-black after:absolute after:bottom-0 after:left-0 after:w-full after:border-b-2 after:border-dotted after:border-black",
-      "dark:text-white dark:after:border-white"
+      "text-black after:absolute after:bottom-0 after:left-0 after:w-full after:border-b-2 after:border-dotted after:border-teal-600",
+      "dark:text-white dark:after:border-teal-400"
     ),
     inactive: cn(
       "text-gray-600 hover:text-black",

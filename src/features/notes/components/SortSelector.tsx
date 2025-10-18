@@ -26,7 +26,7 @@ export default function SortSelector({
         id="sort-select"
         value={sortOption}
         onChange={(e) => onSortChange(e.target.value as SortOption)}
-        className="cursor-pointer rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:focus:ring-blue-400"
+        className="btn-secondary cursor-pointer focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:outline-none dark:focus:ring-teal-400"
       >
         {sortOptions.map((option) => (
           <option key={option.value} value={option.value}>
