@@ -83,5 +83,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.wordWrap": "on"
-  }
+  },
+
+  /* CSS設定の追加 */
+  "css.validate": false
 }
