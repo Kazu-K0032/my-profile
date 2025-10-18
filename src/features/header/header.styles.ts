@@ -17,8 +17,8 @@ export const headerStyles = {
  * テーマトグルボタンのスタイル
  */
 export const themeToggleStyles = {
-  base: "fixed right-4 top-2 z-50 flex select-none items-center gap-2 rounded-full px-4 py-2 font-medium backdrop-blur-md transition-all duration-300 w-24 justify-center",
-  dark: "bg-gray-800/70 text-gray-200 shadow-lg shadow-gray-800/50 hover:bg-gray-700/70",
+  base: "fixed right-4 top-2 z-50 flex select-none items-center gap-2 rounded-full px-4 py-2 font-medium backdrop-blur-md transition-all duration-300 w-12 justify-center cursor-pointer",
+  dark: "bg-gray-800/70 text-gray-200 shadow-lg shadow-gray-800/50 hover:bg-gray-700/70 border border-gray-300/50",
   light:
     "bg-white/70 text-gray-800 shadow-lg shadow-gray-300/50 hover:bg-gray-50/70",
   placeholder:

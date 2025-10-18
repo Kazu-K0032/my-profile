@@ -42,7 +42,6 @@ export default function Header({ onNavClick, currentPage }: HeaderProps) {
       return (
         <button className={themeToggleStyles.placeholder}>
           <span className="text-lg">☀️</span>
-          <span className="text-sm">Light</span>
         </button>
       );
     }
@@ -51,7 +50,6 @@ export default function Header({ onNavClick, currentPage }: HeaderProps) {
     return (
       <button onClick={toggleTheme} className={getThemeToggleClasses(isDark)}>
         <span className="text-lg">{isDark ? "🌙" : "☀️"}</span>
-        <span className="text-sm">{isDark ? "Dark" : "Light"}</span>
       </button>
     );
   };
