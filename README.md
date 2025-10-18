@@ -1,6 +1,6 @@
 # my-profile
 
-[English](./docs/lang/en.md) | 日本語
+[English](./docs/lang/en-readme.md) | 日本語
 
 個人プロフィールサイト
 
