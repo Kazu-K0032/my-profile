@@ -19,6 +19,7 @@
     background-color: var(--c-bg-primary);
     line-height: 1.2;
     letter-spacing: 0.06em;
+    scrollbar-gutter: stable;
   }
 }
 
