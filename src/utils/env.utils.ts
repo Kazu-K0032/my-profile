@@ -26,7 +26,6 @@ function validateEnvironmentVariables(
     "BASE_API_URL",
     "QIITA_TOKEN",
   ];
-  console.log(requiredVariables);
 
   const missingVariables: string[] = [];
   const errors: string[] = [];
@@ -87,10 +86,8 @@ export function validateEnvironment(): void {
 
   if (!validation.isValid) {
     const errorMessage = [
-      "環境変数の設定が不完全です:",
-      ...validation.missingVariables.map(
-        (v) => `  - ${v} が設定されていません`
-      ),
+      "Environment variable settings are incomplete:",
+      ...validation.missingVariables.map((v) => `  - ${v} is not set`),
       ...validation.errors.map((e) => `  - ${e}`),
     ].join("\n");
 
