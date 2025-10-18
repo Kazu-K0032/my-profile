@@ -1,17 +1,17 @@
 import { NextResponse } from "next/server";
+import { validateEnvironment, getRequiredEnvVariable } from "@/utils/env.utils";
 
 export async function GET() {
   try {
-    if (!process.env.QIITA_TOKEN || !process.env.BASE_API_URL) {
-      return NextResponse.json(
-        { error: "環境変数が設定されていません" },
-        { status: 500 }
-      );
-    }
+    // 環境変数の検証
+    validateEnvironment();
 
-    const res = await fetch(process.env.BASE_API_URL, {
+    const qiitaToken = getRequiredEnvVariable("QIITA_TOKEN");
+    const baseApiUrl = getRequiredEnvVariable("BASE_API_URL");
+
+    const res = await fetch(baseApiUrl, {
       headers: {
-        Authorization: `Bearer ${process.env.QIITA_TOKEN}`,
+        Authorization: `Bearer ${qiitaToken}`,
       },
     });
 

@@ -16,6 +16,15 @@ next-env.d.ts
 .env.local
 .env.production
 .env.development
+.env.staging
+.env.test
+
+# 機密情報を含むファイル
+*.key
+*.pem
+*.p12
+*.pfx
+secrets/
 
 # エディタ
 .cursor/mcp.json
