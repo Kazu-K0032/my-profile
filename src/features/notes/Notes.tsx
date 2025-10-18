@@ -106,7 +106,7 @@ export default function Notes() {
             {currentArticles.map((article) => (
               <div
                 key={article.id}
-                className="group transform transition-transform duration-200 hover:-translate-y-1"
+                className="group transform transition-transform duration-200 hover:translate-y-1"
               >
                 <Article {...article} site="Qiita" />
               </div>

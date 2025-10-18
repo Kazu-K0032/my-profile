@@ -27,8 +27,7 @@ export default function Production() {
             <li
               key={item.id}
               className={cn(
-                "group transform rounded-xl border border-emerald-900/10 bg-white/80 p-0 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg",
-                "backdrop-blur-sm dark:border-emerald-300/10 dark:bg-neutral-900/70"
+                "group transform rounded-xl border border-emerald-900/10 bg-white/80 p-0 shadow-lg transition-all duration-200 hover:translate-y-1 hover:shadow-none"
               )}
             >
               <div

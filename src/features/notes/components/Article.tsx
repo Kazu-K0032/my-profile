@@ -19,7 +19,7 @@ export default function Article({
   likes_count,
 }: ArticleProps) {
   return (
-    <div className="group cursor-pointer rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800">
+    <div className="group cursor-pointer rounded-lg border border-gray-200 bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-none dark:border-gray-700 dark:bg-gray-800">
       <div className="flex items-start gap-4">
         {/* アイコンと日付 */}
         <div className="flex flex-col items-center gap-3">
