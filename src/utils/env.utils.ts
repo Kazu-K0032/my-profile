@@ -7,7 +7,7 @@ import type {
   EnvironmentVariables,
   EnvValidationResult,
 } from "@/types/env.types";
-import { isValidUrl } from "@/utils/validate";
+import { isValidUrl } from "@/utils/validate.utils";
 
 /**
  * 環境変数が正しく設定されているかをチェックする関数
