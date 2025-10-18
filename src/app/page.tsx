@@ -23,7 +23,7 @@ export default function Home() {
       <Header onNavClick={handleNavClick} currentPage={currentPage} />
 
       {/* メインコンテンツエリア */}
-      <main className="px-8 py-16">
+      <main className="px-8 pt-8 pb-16">
         <div className="mx-auto max-w-4xl">
           {currentPage === "About" ? (
             <About />

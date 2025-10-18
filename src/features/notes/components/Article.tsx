@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { QIITA_ICON_PATH } from "@/constants/qiita";
 import type { QiitaArticle } from "@/types/qiita.types";
+import { cn } from "@/utils/cn";
 import { formatDate } from "@/utils/date";
+import { notesStyles } from "../Notes.styles";
 
 interface ArticleProps extends QiitaArticle {
   created_at: string; // 作成日時
@@ -19,11 +21,11 @@ export default function Article({
   likes_count,
 }: ArticleProps) {
   return (
-    <div className="group cursor-pointer rounded-lg border border-gray-200 bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-none dark:border-gray-700 dark:bg-gray-800">
+    <div className={cn(notesStyles.articleCard, "card-hover")}>
       <div className="flex items-start gap-4">
         {/* アイコンと日付 */}
         <div className="flex flex-col items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
+          <div className={notesStyles.qiitaIconBg}>
             <Image
               src={QIITA_ICON_PATH}
               alt="Qiita"
@@ -32,19 +34,15 @@ export default function Article({
               className="h-6 w-6"
             />
           </div>
-          <div className="rounded-md bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300">
-            {formatDate(created_at)}
-          </div>
+          <div className="badge-secondary">{formatDate(created_at)}</div>
         </div>
 
         {/* コンテンツ */}
         <div className="flex-1">
           <div className="mb-2 flex items-center gap-2">
-            <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
-              {site}
-            </span>
+            <span className={notesStyles.siteBadge}>{site}</span>
             {likes_count !== undefined && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-3 py-1 text-sm font-medium text-red-800 dark:bg-red-900/30 dark:text-red-300">
+              <span className={notesStyles.likesBadge}>
                 <svg
                   className="h-3 w-3"
                   fill="currentColor"
@@ -60,7 +58,7 @@ export default function Article({
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block cursor-pointer transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+            className="link-primary block cursor-pointer"
           >
             <h3 className="mb-2 line-clamp-2 text-lg font-semibold text-gray-900 group-hover:text-blue-600 dark:text-gray-100 dark:group-hover:text-blue-400">
               {title}
@@ -71,7 +69,7 @@ export default function Article({
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex cursor-pointer items-center text-sm font-medium text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+              className="link-primary inline-flex cursor-pointer items-center text-sm font-medium"
             >
               記事を読む
               <svg

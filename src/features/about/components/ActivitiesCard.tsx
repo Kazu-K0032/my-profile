@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import { ACTIVITIES } from "../About.constants";
+import { aboutStyles } from "../About.styles";
 
 export default function ActivitiesCard() {
   return (
-    <div className="rounded-xl border border-blue-200 bg-gradient-to-br from-sky-50 to-blue-100 p-6 dark:border-sky-600 dark:from-sky-900/30 dark:to-blue-800/30">
-      <h4 className="mb-4 flex items-center text-lg font-bold text-blue-800 dark:text-blue-300">
-        <span className="mr-2 h-2 w-2 rounded-full bg-blue-500"></span>
+    <div className={aboutStyles.subCard}>
+      <h4 className={aboutStyles.subCardTitle}>
+        <span className="section-dot mr-2"></span>
         活動
       </h4>
       <ul className="space-y-3">
@@ -17,7 +18,7 @@ export default function ActivitiesCard() {
               href={activity.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-blue-100 dark:hover:bg-blue-800/30"
+              className="flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-teal-100 dark:hover:bg-teal-800/30"
             >
               <Image
                 src={activity.icon}

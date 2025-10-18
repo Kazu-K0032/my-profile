@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { THEME_MODES } from "@/constants/globals.constants";
-import { getThemeToggleClasses, themeToggleStyles } from "../header.styles";
+import { getThemeToggleClasses, themeToggleStyles } from "../Header.styles";
 
 /**
  * テーマ切り替えボタンコンポーネント

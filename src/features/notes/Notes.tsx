@@ -1,6 +1,7 @@
 "use client";
 
 import { Pagination, Article, SortSelector } from "./components";
+import { notesStyles } from "./Notes.styles";
 import { useNotes } from "./useNotes";
 
 export default function Notes() {
@@ -23,9 +24,7 @@ export default function Notes() {
     <div className="mx-auto max-w-6xl">
       {/* ヘッダーセクション */}
       <div className="mb-12 text-center">
-        <h2 className="mb-4 text-5xl font-bold text-gray-800 md:text-6xl dark:text-gray-100">
-          Notes
-        </h2>
+        <h2 className="heading-2 mb-4">Notes</h2>
         <p className="text-xl font-medium text-gray-700 dark:text-gray-200">
           技術記事一覧
         </p>
@@ -34,7 +33,7 @@ export default function Notes() {
       {isLoading ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/30 backdrop-blur-sm dark:bg-gray-900/50">
           <div className="flex items-center gap-4">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-blue-500 dark:border-gray-600 dark:border-t-blue-400"></div>
+            <div className={notesStyles.spinner}></div>
             <p className="text-lg font-medium text-gray-800 dark:text-gray-200">
               Loading{loadingText}
             </p>
@@ -84,7 +83,7 @@ export default function Notes() {
 
           {/* 投稿数表示 */}
           <div className="mb-6 flex justify-center">
-            <span className="inline-flex items-center rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 shadow-sm dark:border dark:border-blue-800/30 dark:bg-blue-900/20 dark:text-blue-300">
+            <span className="badge-primary">
               <svg
                 className="mr-2 h-4 w-4"
                 fill="none"

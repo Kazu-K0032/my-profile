@@ -1,15 +1,28 @@
 @import "tailwindcss";
 
+/* レスポンシブブレイクポイント定義 */
 :root {
-  --c-bg-header: #ecf0d2;
-  --c-bg-primary: #e7ebdf;
-  --c-font-primary: #374151;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* カラーパレット（ナチュラルテック系） */
+:root {
+  --c-bg-header: #f0fdf4;
+  --c-bg-primary: #f1f5f9;
+  --c-font-primary: #1e293b;
+  --c-primary: #0d9488;
+  --c-secondary: #14b8a6;
+  --c-accent: #10b981;
 }
 
 .dark {
-  --c-bg-header: #1f2937;
-  --c-bg-primary: #2d3748;
-  --c-font-primary: #ffffff;
+  --c-bg-header: #1e293b;
+  --c-bg-primary: #0f172a;
+  --c-font-primary: #f1f5f9;
 }
 
 @layer base {
@@ -17,16 +30,91 @@
     box-sizing: content-box;
     font-family: "Noto Sans JP", sans-serif;
     background-color: var(--c-bg-primary);
-    line-height: 1.2;
-    letter-spacing: 0.06em;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
     scrollbar-gutter: stable;
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    contain: layout;
+  }
+
+  * {
+    box-sizing: border-box;
   }
 }
 
+/* 背景色クラス */
 .c-bg-header {
   @apply bg-[var(--c-bg-header)];
 }
 
 .c-bg-primary {
   @apply bg-[var(--c-bg-primary)];
+}
+
+/* 共通コンポーネントクラス */
+
+/* 見出しクラス */
+.heading-1 {
+  @apply text-4xl md:text-5xl font-bold text-slate-800 dark:text-slate-100;
+}
+
+.heading-2 {
+  @apply text-3xl md:text-4xl font-bold text-slate-800 dark:text-slate-100;
+}
+
+.heading-3 {
+  @apply text-xl md:text-2xl font-bold text-slate-800 dark:text-slate-100;
+}
+
+.heading-4 {
+  @apply text-lg font-bold text-slate-800 dark:text-slate-100;
+}
+
+/* ボタンクラス */
+.btn-primary {
+  @apply inline-flex items-center gap-2 rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-teal-700 focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:outline-none dark:bg-teal-500 dark:hover:bg-teal-600;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700;
+}
+
+.btn-disabled {
+  @apply cursor-not-allowed opacity-50 hover:bg-white dark:hover:bg-gray-800;
+}
+
+/* バッジクラス */
+.badge-primary {
+  @apply inline-flex items-center rounded-full bg-teal-50 px-4 py-2 text-sm font-medium text-teal-700 shadow-sm dark:border dark:border-teal-800/30 dark:bg-teal-900/20 dark:text-teal-300;
+}
+
+.badge-secondary {
+  @apply inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300;
+}
+
+.badge-small {
+  @apply rounded-full px-3 py-1 text-xs font-semibold;
+}
+
+/* カードクラス */
+.card-base {
+  @apply rounded-xl border border-gray-200 bg-white p-6 shadow-lg transition-all duration-300 dark:border-gray-700 dark:bg-gray-800;
+}
+
+.card-hover {
+  @apply hover:shadow-none hover:translate-y-1;
+}
+
+/* リンククラス */
+.link-primary {
+  @apply text-teal-600 transition-colors hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300;
+}
+
+/* セクションドット */
+.section-dot {
+  @apply h-2 w-2 rounded-full bg-teal-500;
 }

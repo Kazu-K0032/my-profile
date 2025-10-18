@@ -17,9 +17,7 @@ export default function About() {
     <div className="mx-auto max-w-6xl">
       {/* ヘッダーセクション */}
       <div className="mb-12 text-center">
-        <h2 className="mb-4 text-5xl font-bold text-gray-800 md:text-6xl dark:text-gray-100">
-          {mainTitle}
-        </h2>
+        <h2 className="heading-2 mb-4">{mainTitle}</h2>
         <p className="text-xl font-medium text-gray-700 dark:text-gray-200">
           {subTitle}
         </p>

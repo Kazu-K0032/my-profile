@@ -11,7 +11,7 @@ import {
   headerStyles,
   themeToggleStyles,
   getThemeToggleClasses,
-} from "./header.styles";
+} from "./Header.styles";
 import { useInitialLoad } from "./hooks/useInitialLoad";
 
 interface HeaderProps {
