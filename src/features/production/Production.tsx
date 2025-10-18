@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { getIconSize } from "@/styles/DesignSystem.styles";
 import { cn } from "@/utils/cn";
 import { ProductionModal } from "./components";
 import { productionStyles } from "./Production.styles";
@@ -95,7 +96,7 @@ export default function Production() {
                           alt="GitHub"
                           width={20}
                           height={20}
-                          className="h-5 w-5"
+                          className={getIconSize("lg")}
                           priority={false}
                         />
                       </a>
@@ -118,7 +119,7 @@ export default function Production() {
                               alt={site.siteTtl}
                               width={20}
                               height={20}
-                              className="h-5 w-5"
+                              className={getIconSize("lg")}
                               priority={false}
                             />
                           </a>
@@ -224,7 +225,7 @@ export default function Production() {
                         className="flex items-center text-sm leading-6 text-gray-700 dark:text-gray-200"
                       >
                         <svg
-                          className="mr-2 h-4 w-4 flex-shrink-0 text-green-500"
+                          className={`mr-2 ${getIconSize("md")} flex-shrink-0 text-green-500`}
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"

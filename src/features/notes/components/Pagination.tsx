@@ -1,3 +1,5 @@
+import { getButtonSize, getIconSize } from "@/styles/DesignSystem.styles";
+
 interface PaginationProps {
   currentPage: number; // 現在のページ
   totalPages: number; // 総ページ数
@@ -16,10 +18,10 @@ export default function Pagination({
       <button
         onClick={onPrevPage}
         disabled={currentPage === 1}
-        className="btn-secondary disabled:btn-disabled"
+        className={`btn-secondary disabled:btn-disabled ${getButtonSize("md")}`}
       >
         <svg
-          className="mr-2 h-4 w-4"
+          className={`mr-2 ${getIconSize("md")}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -47,11 +49,11 @@ export default function Pagination({
       <button
         onClick={onNextPage}
         disabled={currentPage === totalPages}
-        className="btn-secondary disabled:btn-disabled"
+        className={`btn-secondary disabled:btn-disabled ${getButtonSize("md")}`}
       >
         次へ
         <svg
-          className="ml-2 h-4 w-4"
+          className={`ml-2 ${getIconSize("md")}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

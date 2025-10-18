@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { QIITA_ICON_PATH } from "@/constants/qiita";
+import { getIconSize } from "@/styles/DesignSystem.styles";
 import type { QiitaArticle } from "@/types/qiita.types";
 import { cn } from "@/utils/cn";
 import { formatDate } from "@/utils/date";
@@ -31,7 +32,7 @@ export default function Article({
               alt="Qiita"
               width={24}
               height={24}
-              className="h-6 w-6"
+              className={getIconSize("xl")}
             />
           </div>
           <div className="badge-secondary">{formatDate(created_at)}</div>
@@ -45,7 +46,7 @@ export default function Article({
               {likes_count !== undefined && (
                 <span className={notesStyles.likesBadge}>
                   <svg
-                    className="h-3 w-3"
+                    className={getIconSize("sm")}
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -75,7 +76,7 @@ export default function Article({
             >
               記事を読む
               <svg
-                className="ml-1 h-4 w-4"
+                className={`ml-1 ${getIconSize("md")}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

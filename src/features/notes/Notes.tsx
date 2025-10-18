@@ -1,5 +1,6 @@
 "use client";
 
+import { getIconSize, getSpacingSize } from "@/styles/DesignSystem.styles";
 import { Pagination, Article, SortSelector } from "./components";
 import { notesStyles } from "./Notes.styles";
 import { useNotes } from "./useNotes";
@@ -44,7 +45,7 @@ export default function Notes() {
           <div className="mx-auto max-w-md rounded-lg bg-rose-50 p-6 shadow-sm dark:border dark:border-rose-800/20 dark:bg-rose-900/10">
             <div className="mb-4 text-rose-500 dark:text-rose-400">
               <svg
-                className="mx-auto h-12 w-12"
+                className={`mx-auto ${getIconSize("xl")}`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -85,7 +86,7 @@ export default function Notes() {
           <div className="mb-6 flex justify-center">
             <span className="badge-primary">
               <svg
-                className="mr-2 h-4 w-4"
+                className={`mr-2 ${getIconSize("md")}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -101,7 +102,9 @@ export default function Notes() {
             </span>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
+          <div
+            className={`grid ${getSpacingSize("lg")} md:grid-cols-2 lg:grid-cols-1`}
+          >
             {currentArticles.map((article) => (
               <div
                 key={article.id}

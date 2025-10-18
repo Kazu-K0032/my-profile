@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { getIconSize } from "@/styles/DesignSystem.styles";
 import { HOBBIES } from "../About.constants";
 import { aboutStyles } from "../About.styles";
 import { useAbout } from "../useAbout";
@@ -28,7 +29,7 @@ export default function HobbiesCard() {
               alt={hobby.alt}
               width={24}
               height={24}
-              className="h-6 w-6 dark:invert"
+              className={`${getIconSize("xl")} dark:invert`}
             />
             <span className="text-sm text-gray-700 dark:text-gray-300">
               {hobby.name}

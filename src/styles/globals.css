@@ -11,25 +11,25 @@
 
 /* カラーパレット（ナチュラルテック系） */
 :root {
-  --c-bg-header: #f0fdf4;
-  --c-bg-primary: #f1f5f9;
-  --c-font-primary: #1e293b;
-  --c-primary: #0d9488;
-  --c-secondary: #14b8a6;
-  --c-accent: #10b981;
+  --color-background-header: #f0fdf4;
+  --color-background-primary: #f1f5f9;
+  --color-text-primary: #1e293b;
+  --color-accent-primary: #0d9488;
+  --color-accent-secondary: #14b8a6;
+  --color-accent-tertiary: #10b981;
 }
 
 .dark {
-  --c-bg-header: #1e293b;
-  --c-bg-primary: #0f172a;
-  --c-font-primary: #f1f5f9;
+  --color-background-header: #1e293b;
+  --color-background-primary: #0f172a;
+  --color-text-primary: #f1f5f9;
 }
 
 @layer base {
   html {
     box-sizing: content-box;
     font-family: "Noto Sans JP", sans-serif;
-    background-color: var(--c-bg-primary);
+    background-color: var(--color-background-primary);
     line-height: 1.6;
     letter-spacing: 0.02em;
     scrollbar-gutter: stable;
@@ -38,7 +38,6 @@
   body {
     min-height: 100vh;
     overflow-x: hidden;
-    contain: layout;
   }
 
   * {
@@ -48,11 +47,11 @@
 
 /* 背景色クラス */
 .c-bg-header {
-  @apply bg-[var(--c-bg-header)];
+  @apply bg-[var(--color-background-header)];
 }
 
 .c-bg-primary {
-  @apply bg-[var(--c-bg-primary)];
+  @apply bg-[var(--color-background-primary)];
 }
 
 /* 共通コンポーネントクラス */
@@ -117,4 +116,9 @@
 /* セクションドット */
 .section-dot {
   @apply h-2 w-2 rounded-full bg-teal-500;
+}
+
+/* レンダリング最適化 */
+.layout-stable {
+  contain: layout;
 }
