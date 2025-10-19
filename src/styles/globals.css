@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-/* Tailwind CSS v4用のダークモードバリアント定義 */
+/* Tailwind CSS v4用のダークモードバリアント定義
+ * @see https://www.sujalvanjare.com/blog/fix-dark-class-not-applying-tailwind-css-v4#why-aren't-dark-classes-working-in-tailwind-css-v4
+ */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* レスポンシブブレイクポイント定義 */
@@ -12,7 +14,7 @@
   --breakpoint-2xl: 1536px;
 }
 
-/* テーマ変数を@layer themeで定義 */
+/* テーマ変数 */
 @layer theme {
   :root {
     /* ライトモードのカラーパレット（ナチュラルテック系） */
