@@ -12,7 +12,7 @@ interface NavigationProps {
 }
 
 /**
- * ナビゲーションコンポーネント
+ * ナビゲーション
  */
 export default function Navigation({
   onNavClick,

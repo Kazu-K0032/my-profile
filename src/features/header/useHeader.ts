@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react";
 
-/**
- * 初期ロード状態を管理するカスタムフック
- * @param initialDelay 初期表示の遅延時間（ミリ秒）
- * @returns 初期ロード状態とマウント状態
- */
-export function useInitialLoad(initialDelay: number = 3000) {
+export const useHeader = () => {
+  // マウント状態
   const [mounted, setMounted] = useState(false);
+  // 初期ロード状態
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   useEffect(() => {
     setMounted(true);
     const timer = setTimeout(() => {
       setIsInitialLoad(false);
-    }, initialDelay);
+    }, 3000);
     return () => clearTimeout(timer);
-  }, [initialDelay]);
+  }, []);
 
   return { mounted, isInitialLoad };
-}
+};

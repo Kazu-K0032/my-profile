@@ -1,6 +1,6 @@
 "use client";
 
-import { getIconSize, getSpacingSize } from "@/styles/DesignSystem.styles";
+import { getIconSize, getSpacingSize } from "@/styles/design.styles";
 import { Pagination, Article, SortSelector } from "./components";
 import { notesStyles } from "./Notes.styles";
 import { useNotes } from "./useNotes";

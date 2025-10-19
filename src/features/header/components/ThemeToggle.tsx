@@ -6,7 +6,7 @@ import { THEME_MODES } from "@/constants/globals.constants";
 import { getThemeToggleClasses, themeToggleStyles } from "../Header.styles";
 
 /**
- * テーマ切り替えボタンコンポーネント
+ * Light/Darkモード切り替えボタンコンポーネント
  */
 export default function ThemeToggle() {
   const { theme, setTheme, resolvedTheme } = useTheme();

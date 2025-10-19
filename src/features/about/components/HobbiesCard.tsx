@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { getIconSize } from "@/styles/DesignSystem.styles";
+import { getIconSize } from "@/styles/design.styles";
 import { HOBBIES } from "../About.constants";
 import { aboutStyles } from "../About.styles";
 import { useAbout } from "../useAbout";

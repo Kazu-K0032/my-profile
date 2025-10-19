@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { QIITA_ICON_PATH } from "@/constants/qiita";
-import { getIconSize } from "@/styles/DesignSystem.styles";
+import { getIconSize } from "@/styles/design.styles";
 import type { QiitaArticle } from "@/types/qiita.types";
-import { cn } from "@/utils/cn";
-import { formatDate } from "@/utils/date";
+import { cn } from "@/utils/cn.utils";
+import { formatDate } from "@/utils/date.utils";
 import { notesStyles } from "../Notes.styles";
 
 interface ArticleProps extends QiitaArticle {

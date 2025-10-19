@@ -8,7 +8,7 @@ interface PortfolioTitleProps {
 }
 
 /**
- * ポートフォリオタイトルコンポーネント
+ * ポートフォリオタイトル
  */
 export default function PortfolioTitle({ isInitialLoad }: PortfolioTitleProps) {
   return (

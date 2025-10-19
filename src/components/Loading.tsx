@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/cn.utils";
 
 interface LoadingProps {
   className?: string;

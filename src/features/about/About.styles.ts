@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/cn.utils";
 
 /**
  * About機能専用のスタイル定義

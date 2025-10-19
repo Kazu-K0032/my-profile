@@ -8,7 +8,7 @@ import { Header } from "@/features/header";
 import { Notes } from "@/features/notes";
 import { Production } from "@/features/production";
 import type { NavigationTabKey } from "@/types/globals.types";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/cn.utils";
 import { getSavedTab, saveTab } from "@/utils/localstorage.utils";
 
 export default function Home() {

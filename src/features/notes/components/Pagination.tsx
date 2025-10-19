@@ -1,4 +1,4 @@
-import { getButtonSize, getIconSize } from "@/styles/DesignSystem.styles";
+import { getButtonSize, getIconSize } from "@/styles/design.styles";
 
 interface PaginationProps {
   currentPage: number; // 現在のページ
