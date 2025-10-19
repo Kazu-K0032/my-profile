@@ -4,6 +4,9 @@ import Image from "next/image";
 import { QUALIFICATIONS } from "../About.constants";
 import { aboutStyles } from "../About.styles";
 
+/**
+ * 受験資格カード
+ */
 export default function QualificationsCard() {
   return (
     <div className={aboutStyles.subCard}>

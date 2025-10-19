@@ -7,6 +7,9 @@ interface PaginationProps {
   onNextPage: () => void; // 次のページに移動する
 }
 
+/**
+ * ページネーション
+ */
 export default function Pagination({
   currentPage,
   totalPages,

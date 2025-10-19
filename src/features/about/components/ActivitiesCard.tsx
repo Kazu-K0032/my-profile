@@ -4,6 +4,9 @@ import Image from "next/image";
 import { ACTIVITIES } from "../About.constants";
 import { aboutStyles } from "../About.styles";
 
+/**
+ * 活動カード
+ */
 export default function ActivitiesCard() {
   return (
     <div className={aboutStyles.subCard}>

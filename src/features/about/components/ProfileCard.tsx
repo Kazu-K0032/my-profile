@@ -3,6 +3,9 @@
 import { PROFILE_INFO } from "../About.constants";
 import { aboutStyles } from "../About.styles";
 
+/**
+ * プロフィールカード
+ */
 export default function ProfileCard() {
   return (
     <div className={aboutStyles.profileCard}>

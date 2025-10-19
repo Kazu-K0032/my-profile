@@ -5,6 +5,9 @@ interface SortSelectorProps {
   onSortChange: (option: SortOption) => void; // ソートオプション変更時のコールバック
 }
 
+/**
+ * ソートセレクタ
+ */
 export default function SortSelector({
   sortOption,
   onSortChange,

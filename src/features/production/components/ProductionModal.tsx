@@ -190,6 +190,9 @@ interface ProductionModalProps {
   pages?: ProductionMarkdownPage[]; // モーダルのページ
 }
 
+/**
+ * モーダル
+ */
 export default function ProductionModal({
   isOpen,
   onClose,

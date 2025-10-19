@@ -20,6 +20,7 @@ export default function Header({ onNavClick, currentPage }: HeaderProps) {
 
   return (
     <div className={headerStyles.container}>
+      {/* テーマ切り替えボタン */}
       <ThemeToggle />
 
       <motion.header
@@ -30,8 +31,10 @@ export default function Header({ onNavClick, currentPage }: HeaderProps) {
       >
         <div className={headerStyles.content}>
           <section className={headerStyles.section}>
+            {/* ポートフォリオタイトル */}
             <PortfolioTitle isInitialLoad={isInitialLoad} />
 
+            {/* ナビゲーション */}
             <Navigation
               onNavClick={onNavClick}
               currentPage={currentPage}

@@ -6,6 +6,9 @@ import { HOBBIES } from "../About.constants";
 import { aboutStyles } from "../About.styles";
 import { useAbout } from "../useAbout";
 
+/**
+ * 趣味カード
+ */
 export default function HobbiesCard() {
   const { resolvedTheme, mounted } = useAbout();
 

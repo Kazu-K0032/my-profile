@@ -14,6 +14,9 @@ interface ArticleProps extends QiitaArticle {
   likes_count?: number; // いいね数
 }
 
+/**
+ * 記事カード
+ */
 export default function Article({
   created_at,
   url,

@@ -26,17 +26,22 @@ export default function About() {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* プロフィールカード */}
         <div className="lg:col-span-2">
+          {/* プロフィールカード */}
           <ProfileCard />
           {/* 受験資格・活動・趣味セクション */}
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {/* 受験資格カード */}
             <QualificationsCard />
+            {/* 活動カード */}
             <ActivitiesCard />
+            {/* 趣味カード */}
             <HobbiesCard />
           </div>
         </div>
 
         {/* スキルセクション */}
         <div className="lg:col-span-1">
+          {/* スキルカード */}
           <SkillsCard />
         </div>
       </div>

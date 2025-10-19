@@ -4,6 +4,9 @@ import Image from "next/image";
 import { aboutStyles } from "../About.styles";
 import { useAbout } from "../useAbout";
 
+/**
+ * スキルカード
+ */
 export default function SkillsCard() {
   const { professionalSkills, productSkills, hobbySkills } = useAbout();
 
