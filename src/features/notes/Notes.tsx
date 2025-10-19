@@ -1,6 +1,6 @@
 "use client";
 
-import { getIconSize, getSpacingSize } from "@/styles/DesignSystem.styles";
+import { getIconSize, getSpacingSize } from "@/styles/design.styles";
 import { Pagination, Article, SortSelector } from "./components";
 import { notesStyles } from "./Notes.styles";
 import { useNotes } from "./useNotes";
@@ -110,12 +110,14 @@ export default function Notes() {
                 key={article.id}
                 className="group h-full transform transition-transform duration-200 hover:translate-y-1"
               >
+                {/* 記事カード */}
                 <Article {...article} site="Qiita" />
               </div>
             ))}
           </div>
           {currentArticles.length > 0 && (
             <div className="mt-12">
+              {/* ページネーション */}
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}

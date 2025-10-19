@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/cn.utils";
 import type { ProductionMarkdownPage } from "../Production.types";
 
 /**
@@ -190,6 +190,9 @@ interface ProductionModalProps {
   pages?: ProductionMarkdownPage[]; // モーダルのページ
 }
 
+/**
+ * モーダル
+ */
 export default function ProductionModal({
   isOpen,
   onClose,

@@ -3,6 +3,9 @@
 import { CAREERS } from "../About.constants";
 import { aboutStyles } from "../About.styles";
 
+/**
+ * 経歴カード
+ */
 export default function CareerCard() {
   return (
     <div className={aboutStyles.careerCard}>

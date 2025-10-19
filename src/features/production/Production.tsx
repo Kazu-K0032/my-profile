@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { getIconSize } from "@/styles/DesignSystem.styles";
-import { cn } from "@/utils/cn";
+import { getIconSize } from "@/styles/design.styles";
+import { cn } from "@/utils/cn.utils";
 import { ProductionModal } from "./components";
 import { productionStyles } from "./Production.styles";
 import { hasModal } from "./Production.utils";

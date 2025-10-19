@@ -1,4 +1,4 @@
-import { getButtonSize, getIconSize } from "@/styles/DesignSystem.styles";
+import { getButtonSize, getIconSize } from "@/styles/design.styles";
 
 interface PaginationProps {
   currentPage: number; // 現在のページ
@@ -7,6 +7,9 @@ interface PaginationProps {
   onNextPage: () => void; // 次のページに移動する
 }
 
+/**
+ * ページネーション
+ */
 export default function Pagination({
   currentPage,
   totalPages,
