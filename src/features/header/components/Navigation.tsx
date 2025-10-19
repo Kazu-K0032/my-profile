@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { NAVIGATION_TABS } from "@/constants/globals.constants";
-import type { NavigationTabKey } from "@/types/globals.types";
+import type { NavigationTab, NavigationTabKey } from "@/types/globals.types";
 import { getNavigationButtonClasses, navigationStyles } from "../Header.styles";
 
 interface NavigationProps {
   onNavClick: (page: NavigationTabKey) => void;
   currentPage: NavigationTabKey;
   isInitialLoad: boolean;
+  navigationTabs: NavigationTab[];
 }
 
 /**
@@ -18,6 +18,7 @@ export default function Navigation({
   onNavClick,
   currentPage,
   isInitialLoad,
+  navigationTabs,
 }: NavigationProps) {
   /**
    * ナビゲーションクリック時の処理
@@ -37,7 +38,7 @@ export default function Navigation({
       transition={{ duration: 0.5, ease: "easeInOut" }}
     >
       <ul className={navigationStyles.list}>
-        {NAVIGATION_TABS.map((tab) => (
+        {navigationTabs.map((tab) => (
           <li key={tab.key}>
             <button
               onClick={() => handleNav(tab.key as NavigationTabKey)}
