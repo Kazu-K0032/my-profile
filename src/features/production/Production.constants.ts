@@ -5,6 +5,164 @@ import type { ProductionItem } from "./Production.types";
  */
 export const PRODUCTION_ITEMS: ProductionItem[] = [
   {
+    id: "administration-table",
+    title: "管理テーブルアプリ",
+    description: "Google Apps Scriptを使用した管理テーブル",
+    url: "https://github.com/Kazu-K0032/Administration-Table",
+    publishedAt: "2023/10/05",
+    thumbnailUrl: "/common/administration-table.png",
+    tags: ["Google Apps Script"],
+    features: [
+      "やることリスト管理: 月次のタスク進捗を追跡",
+      "自動通知: 未完了タスクの週次通知（LINE Messaging API）",
+      "進捗計算: タスクの平均進捗率を自動計算",
+      "リセット機能: 月次タスクの進捗をリセット",
+      "編集履歴: スプレッドシートの変更履歴を記録",
+    ],
+    modal: {
+      images: ["/common/administration-table.png"],
+      pages: [
+        {
+          title: "【プロジェクト概要・開発背景】",
+          content: [
+            "## 概要",
+            "Google Apps Scriptを使用した管理テーブル自動化プロジェクトです。",
+            "スプレッドシートの「やることリスト」を管理し、LINE Messaging APIによる通知機能を提供します。",
+            "## 背景",
+            "インターンでGASを使った開発をしていたのと、自身の意識を高めるための毎月ごとのタスク管理表が欲しいと感じ、このようなプロジェクトを作成しました。",
+          ],
+        },
+        {
+          title: "【使用技術・ツール】",
+          content: [
+            "### 言語",
+            "Google Apps Script",
+            "### ツール",
+            "Google Sheets, LINE Messaging API",
+            "### 技術選定",
+            "GASの学習のため",
+          ],
+        },
+        {
+          title: "【プロジェクトを通した学び】",
+          content: ["日常を支える簡単なGASであれば自分で作れるようになった。"],
+        },
+      ],
+      demoUrl: "https://github.com/Kazu-K0032/Administration-Table",
+      repoUrl: "https://github.com/Kazu-K0032/Administration-Table",
+    },
+  },
+  {
+    id: "template-todo-app",
+    title: "テンプレートTodoアプリ",
+    description:
+      "Next.jsを使用した学習・検証を行うためのテンプレートリポジトリ",
+    url: "https://github.com/Kazu-K0032/template-todo-app",
+    publishedAt: "2025/10/17",
+    thumbnailUrl: "/common/template-todo-app.png",
+    tags: ["Next.js", "Antd", "TypeScript", "Tailwind CSS", "Prisma"],
+    features: [
+      "タスク管理機能（追加・編集・削除）",
+      "アカウント管理機能(新規作成・アカウント変更)",
+    ],
+    modal: {
+      images: ["/common/template-todo-app.png"],
+      pages: [
+        {
+          title: "【プロジェクト概要・開発背景】",
+          content: [
+            "## 概要",
+            "本プロジェクトは、Next.jsを使用した学習・検証を行うためのテンプレートリポジトリです。",
+            "## 背景",
+            "仕事で使用している技術の勉強のため、環境をできるだけ合わせて学習や検証を行えるリポジトリが欲しく、このようなリポジトリを作成しました。",
+          ],
+        },
+        {
+          title: "【使用技術・ツール】",
+          content: [
+            "### 言語",
+            "Next.js, TypeScript, Tailwind CSS, Prisma",
+            "### ツール",
+            "Git/GitHub, Vercel",
+            "### 技術選定",
+            "仕事で使用している技術の勉強のため",
+          ],
+        },
+        {
+          title: "【プロジェクトを通した学び】",
+          content: [
+            "仕事で生まれた課題の学習環境として再利用しやすく、環境構築に時間がかからなくなったので学習時間の確保に大きな影響を与えることができた。",
+          ],
+        },
+      ],
+      demoUrl: "https://github.com/Kazu-K0032/template-todo-app",
+      repoUrl: "https://github.com/Kazu-K0032/template-todo-app",
+    },
+  },
+  {
+    id: "go-chat-app",
+    title: "Goを使用した基本的なチャットアプリ",
+    description:
+      "認証・プロフィール・ユーザー検索・チャット機能を備えた基本的なチャットアプリです",
+    url: "https://github.com/Kazu-K0032/Go-Chat-App",
+    publishedAt: "2025/04/19",
+    thumbnailUrl: "/common/go-chat-app.png",
+    tags: ["Go", "Firebase", "HTML", "SCSS", "JavaScript"],
+    features: [
+      "都道府県別の人口推移グラフ表示",
+      "プロフィール（ユーザー名・画像・パスワードなどの変更）",
+      "検索機能（登録済みユーザーのフィルタリング）",
+      "チャット機能（メッセージの送信・受信）",
+    ],
+    modal: {
+      images: ["/common/go-chat-app.png"],
+      pages: [
+        {
+          title: "【プロジェクト概要・開発背景】",
+          content: [
+            "## 概要",
+            "本プロジェクトは、認証・プロフィール・ユーザー検索・チャット機能を備えた基本的なチャットアプリの開発を目的としています。",
+            "## 背景",
+            "社内でGo言語の理解を深めるべく、1ヶ月かけてGo言語の学習とチャットアプリを作成するイベントがあったため、個人開発として開発を行いました。",
+          ],
+        },
+        {
+          title: "【使用技術・ツール】",
+          content: [
+            "### 言語",
+            "Go, HTML/CSS(SCSS), JavaScript",
+            "### ツール",
+            "Git/GitHub, Firebase",
+            "### 技術選定",
+            "Go言語の学習のため",
+          ],
+        },
+        {
+          title: "【開発プロセス・自分の役割】",
+          content: [
+            "Go言語は全くの初心者だったため、Udemyの講座を参考にしながら開発を行いました。",
+            "開発の中で大事にしていたのは、基本的なGoの機能を理解することと、誰よりもチャットアプリらしい機能を実装することでした。",
+          ],
+        },
+        {
+          title: "【プロジェクトを通した学び】",
+          content: [
+            "本プロジェクトを通じて、Go言語の基本的な機能を理解することができました。",
+            "本アプリでは並行処理が使われておらずGo言語ならではの良さを発揮出来てはいませんでしたが、1ヶ月かけて人に見せられるアプリを完成できたことは大きな財産になると思ってます。",
+          ],
+        },
+        {
+          title: "【ドキュメントおよび参考資料】",
+          content: [
+            "- [【Go基礎入門】Golang基礎入門 + 各種ライブラリ + 簡単なTodoWebアプリケーション開発(Go言語)](https://www.udemy.com/course/golang-webgosql/?kw=%E3%80%90Go%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80%E3%80%91Golang%E5%9F%BA%E7%A4%8E%E5%85%A5%E9%96%80+%2B+%E5%90%84%E7%A8%AE%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA+%2B+%E7%B0%A1%E5%8D%98%E3%81%AATodoWeb%E3%82%A2%E3%83%97&src=sac&couponCode=25BBPMXINACTIVE)",
+          ],
+        },
+      ],
+      demoUrl: "https://github.com/Kazu-K0032/Go-Chat-App",
+      repoUrl: "https://github.com/Kazu-K0032/Go-Chat-App",
+    },
+  },
+  {
     id: "population-trend-graph-app",
     title: "都道府県別の人口推移グラフ表示アプリ",
     description:
