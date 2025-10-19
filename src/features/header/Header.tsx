@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { NAVIGATION_TABS } from "@/constants/globals.constants";
 import type { NavigationTabKey } from "@/types/globals.types";
 import { Navigation, PortfolioTitle, ThemeToggle } from "./components";
 import { headerStyles } from "./Header.styles";
@@ -39,6 +40,7 @@ export default function Header({ onNavClick, currentPage }: HeaderProps) {
               onNavClick={onNavClick}
               currentPage={currentPage}
               isInitialLoad={isInitialLoad}
+              navigationTabs={NAVIGATION_TABS}
             />
           </section>
         </div>

@@ -28,18 +28,21 @@ export const NAVIGATION_TABS: NavigationTab[] = [
     title: "About",
     subtitle: "私について",
     description: "自己紹介や経歴について",
+    href: "/?tab=about",
   },
   {
     key: "Production",
     title: "Production",
     subtitle: "制作物",
     description: "開発したプロジェクトや作品",
+    href: "/?tab=production",
   },
   {
     key: "Notes",
     title: "Notes",
     subtitle: "記事一覧",
     description: "技術記事やブログ記事",
+    href: "/?tab=notes",
   },
 ];
 

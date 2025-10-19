@@ -6,6 +6,7 @@ export interface NavigationTab {
   title: string;
   subtitle: string;
   description?: string;
+  href: string;
 }
 
 /**
