@@ -1,8 +1,9 @@
 import { Inter } from "next/font/google";
 import type { NavigationTab, ThemeMode } from "@/types/globals.types";
 
-export const SITE_TITLE = "Template App";
-export const SITE_DESCRIPTION = "Webアプリテンプレート";
+export const SITE_TITLE = "Kuji's Portfolio";
+export const SITE_DESCRIPTION = "Kuji's Portfolio";
+export const SITE_FAVICON = "/favicon.ico";
 
 export const INTER_FONT = Inter({
   variable: "--font-inter",

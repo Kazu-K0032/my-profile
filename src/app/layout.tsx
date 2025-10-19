@@ -4,12 +4,16 @@ import "@/styles/globals.css";
 import {
   SITE_TITLE,
   SITE_DESCRIPTION,
+  SITE_FAVICON,
   INTER_FONT,
 } from "@/constants/globals.constants";
 
 export const metadata: Metadata = {
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
+  icons: {
+    icon: SITE_FAVICON,
+  },
 };
 
 export default function RootLayout({
