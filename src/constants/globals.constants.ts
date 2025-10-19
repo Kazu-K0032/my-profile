@@ -41,3 +41,8 @@ export const NAVIGATION_TABS: NavigationTab[] = [
     description: "技術記事やブログ記事",
   },
 ];
+
+/**
+ * ローカルストレージ
+ */
+export const STORAGE_KEY = "qiitaArticles";

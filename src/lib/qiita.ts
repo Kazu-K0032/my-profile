@@ -1,3 +1,4 @@
+import { STORAGE_KEY } from "@/constants/globals.constants";
 import type { QiitaArticle } from "@/types/qiita.types";
 
 const QIITA_ENDPOINT = "/api/qiita";
@@ -33,12 +34,14 @@ export const fetchQiitaArticles = async () => {
  * @returns {QiitaArticle[] | null} キャッシュされた記事の配列、キャッシュが無効または存在しない場合はnull
  */
 export const getCachedArticles = () => {
-  const cachedData = sessionStorage.getItem("qiitaArticles");
+  const cachedData = sessionStorage.getItem(STORAGE_KEY);
   if (!cachedData) return null;
 
   const { articles, timestamp } = JSON.parse(cachedData);
+  // 1時間
   const oneHour = 3600000;
 
+  // 1時間以内の場合はキャッシュされた記事を返す
   if (Date.now() - timestamp < oneHour) {
     return articles;
   }
@@ -53,7 +56,7 @@ export const getCachedArticles = () => {
  */
 export const cacheArticles = (articles: QiitaArticle[]) => {
   sessionStorage.setItem(
-    "qiitaArticles",
+    STORAGE_KEY,
     JSON.stringify({
       articles,
       timestamp: Date.now(),
