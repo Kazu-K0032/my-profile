@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Tailwind CSS v4用のダークモードバリアント定義 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* レスポンシブブレイクポイント定義 */
 :root {
   --breakpoint-sm: 640px;
@@ -9,20 +12,24 @@
   --breakpoint-2xl: 1536px;
 }
 
-/* カラーパレット（ナチュラルテック系） */
-:root {
-  --color-background-header: #f0fdf4;
-  --color-background-primary: #f1f5f9;
-  --color-text-primary: #1e293b;
-  --color-accent-primary: #0d9488;
-  --color-accent-secondary: #14b8a6;
-  --color-accent-tertiary: #10b981;
-}
+/* テーマ変数を@layer themeで定義 */
+@layer theme {
+  :root {
+    /* ライトモードのカラーパレット（ナチュラルテック系） */
+    --color-background-header: #f0fdf4;
+    --color-background-primary: #f1f5f9;
+    --color-text-primary: #1e293b;
+    --color-accent-primary: #0d9488;
+    --color-accent-secondary: #14b8a6;
+    --color-accent-tertiary: #10b981;
+  }
 
-.dark {
-  --color-background-header: #1e293b;
-  --color-background-primary: #0f172a;
-  --color-text-primary: #f1f5f9;
+  .dark {
+    /* ダークモードのカラーパレット */
+    --color-background-header: #1e293b;
+    --color-background-primary: #0f172a;
+    --color-text-primary: #f1f5f9;
+  }
 }
 
 @layer base {
@@ -45,13 +52,19 @@
   }
 }
 
-/* 背景色クラス */
-.c-bg-header {
-  @apply bg-[var(--color-background-header)];
-}
+/* カスタムユーティリティクラス */
+@layer utilities {
+  .c-bg-header {
+    background-color: var(--color-background-header);
+  }
 
-.c-bg-primary {
-  @apply bg-[var(--color-background-primary)];
+  .c-bg-primary {
+    background-color: var(--color-background-primary);
+  }
+
+  .c-text-primary {
+    color: var(--color-text-primary);
+  }
 }
 
 /* 共通コンポーネントクラス */
