@@ -1,4 +1,4 @@
-# my-profile
+# profile
 
 [English](./docs/lang/en-readme.md) | 日本語
 
