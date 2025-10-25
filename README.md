@@ -1,6 +1,6 @@
-# my-profile
+# profile
 
-[English](./docs/lang/en-readme.md) | 日本語
+[English](./docs/lang/en.md) | 日本語
 
 個人プロフィールサイト
 
@@ -17,7 +17,7 @@
 
 ```bash
 git clone <repository>
-cd my-profile
+cd profile
 ```
 
 ### 依存関係インストール

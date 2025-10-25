@@ -1,4 +1,4 @@
-# my-profile
+# profile
 
 [日本語](../../README.md) | English
 
@@ -17,7 +17,7 @@ Personal profile website
 
 ```bash
 git clone <repository>
-cd my-profile
+cd profile
 ```
 
 ### Install dependencies
