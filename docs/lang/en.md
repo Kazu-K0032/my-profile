@@ -1,4 +1,4 @@
-# my-profile
+# profile
 
 [日本語](../../README.md) | English
 
