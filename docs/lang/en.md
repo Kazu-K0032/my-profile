@@ -17,7 +17,7 @@ Personal profile website
 
 ```bash
 git clone <repository>
-cd my-profile
+cd profile
 ```
 
 ### Install dependencies

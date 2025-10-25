@@ -17,7 +17,7 @@
 
 ```bash
 git clone <repository>
-cd my-profile
+cd profile
 ```
 
 ### 依存関係インストール
