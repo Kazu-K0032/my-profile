@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getIconSize } from "@/styles/design.styles";
 import { cn } from "@/utils/cn.utils";
 import { ProductionModal } from "./components";
+import { TOP_PRIORITY_IMAGE_COUNT } from "./Production.constants";
 import { productionStyles } from "./Production.styles";
 import { hasModal } from "./Production.utils";
 import { useProduction } from "./useProduction";
@@ -23,7 +24,7 @@ export default function Production() {
       </div>
       <div className="mx-auto max-w-6xl">
         <ul className="grid gap-6 md:grid-cols-1">
-          {items.map((item) => (
+          {items.map((item, index) => (
             <li
               key={item.id}
               className={cn(productionStyles.productionCard, "card-hover")}
@@ -49,7 +50,7 @@ export default function Production() {
                     fill
                     sizes="(min-width: 768px) 40vw, 100vw"
                     className="rounded-l-xl object-cover md:rounded-l-xl md:rounded-r-none"
-                    priority={false}
+                    priority={index < TOP_PRIORITY_IMAGE_COUNT}
                   />
                 </div>
                 {/* 右：本文 */}
