@@ -14,18 +14,6 @@ export const headerStyles = {
 } as const;
 
 /**
- * テーマトグルボタンのスタイル
- */
-export const themeToggleStyles = {
-  base: "fixed right-4 top-2 z-50 flex select-none items-center gap-2 rounded-full px-4 py-2 font-medium backdrop-blur-md transition-all duration-300 w-12 justify-center cursor-pointer",
-  dark: "bg-gray-800/70 text-gray-200 shadow-lg shadow-gray-800/50 hover:bg-gray-700/70 border border-teal-300/50",
-  light:
-    "bg-white/70 text-gray-800 shadow-lg shadow-gray-300/50 hover:bg-gray-50/70",
-  placeholder:
-    "invisible fixed right-4 top-2 z-50 flex items-center gap-2 rounded-full px-4 py-2 font-medium w-24 justify-center",
-} as const;
-
-/**
  * ナビゲーションのスタイル
  */
 export const navigationStyles = {
@@ -53,18 +41,6 @@ export const portfolioTitleStyles = {
     "text-black dark:text-white"
   ),
 } as const;
-
-/**
- * テーマトグルボタンのスタイル
- * @param isDark テーマがダークかどうか
- * @returns テーマトグルボタンのスタイル
- */
-export const getThemeToggleClasses = (isDark: boolean) => {
-  return cn(
-    themeToggleStyles.base,
-    isDark ? themeToggleStyles.dark : themeToggleStyles.light
-  );
-};
 
 /**
  * ナビゲーションボタンのスタイル
