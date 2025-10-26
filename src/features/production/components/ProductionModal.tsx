@@ -220,6 +220,9 @@ export default function ProductionModal({
   useEffect(() => {
     if (!isOpen) return;
 
+    // サーバーサイドレンダリング時の考慮
+    if (typeof window === "undefined" || !document.body) return;
+
     // 背景のスクロールを無効化
     const originalStyle = window.getComputedStyle(document.body).overflow;
     document.body.style.overflow = "hidden";
@@ -236,7 +239,9 @@ export default function ProductionModal({
 
     return () => {
       // 背景のスクロールを復元
-      document.body.style.overflow = originalStyle;
+      if (typeof window !== "undefined" && document.body) {
+        document.body.style.overflow = originalStyle;
+      }
       controller.abort();
       window.cancelAnimationFrame(raf);
       setVisible(false);

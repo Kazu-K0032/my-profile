@@ -4,12 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { getIconSize } from "@/styles/design.styles";
 import { cn } from "@/utils/cn.utils";
+import { TOP_PRIORITY_IMAGE_COUNT } from "../Production.constants";
 import { productionStyles } from "../Production.styles";
-import type { ProductionItem } from "../Production.types";
+import type { ProductionItem as ProductionItemType } from "../Production.types";
 import { hasModal } from "../Production.utils";
 
 interface ProductionItemProps {
-  item: ProductionItem;
+  item: ProductionItemType;
   index: number;
   onOpenModal: (itemId: string) => void;
 }
@@ -45,7 +46,7 @@ export default function ProductionItem({
             fill
             sizes="(min-width: 768px) 40vw, 100vw"
             className="rounded-l-xl object-cover md:rounded-l-xl md:rounded-r-none"
-            priority={index < 2}
+            priority={index < TOP_PRIORITY_IMAGE_COUNT}
           />
         </div>
         {/* 右：本文 */}
