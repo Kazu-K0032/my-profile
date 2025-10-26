@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useMemo } from "react";
 import Loading from "@/components/Loading";
 import { NAVIGATION_TABS } from "@/constants/globals.constants";
 import { About } from "@/features/about";
 import { Header } from "@/features/header";
 import { Notes } from "@/features/notes";
 import { Production } from "@/features/production";
+import { useTabState } from "@/hooks/useTabState";
 import type { NavigationTabKey } from "@/types/globals.types";
 import { cn } from "@/utils/cn.utils";
 
@@ -16,48 +16,10 @@ interface HomeClientProps {
 }
 
 export default function HomeClient({ initialTab }: HomeClientProps) {
-  // 現在のタブ
-  const [currentPage, setCurrentPage] = useState<NavigationTabKey>(initialTab);
-  // 初期化状態
-  const [isInitialized, setIsInitialized] = useState(false);
-  // ルーター
-  const router = useRouter();
-  // 検索パラメータ
-  const searchParams = useSearchParams();
-
-  /**
-   * ナビゲーションクリックハンドラー
-   * URLパラメータを更新
-   */
-  const handleNavClick = useCallback(
-    (page: NavigationTabKey) => {
-      setCurrentPage(page);
-
-      // URLパラメータを更新
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("tab", page);
-      router.push(`/?${params.toString()}`, { scroll: false });
-    },
-    [router, searchParams]
-  );
-
-  /**
-   * コンポーネントマウント時の初期化処理
-   * URLパラメータのみを使用
-   */
-  useEffect(() => {
-    const urlTab = searchParams.get("tab") as NavigationTabKey;
-
-    if (urlTab && NAVIGATION_TABS.some((tab) => tab.key === urlTab)) {
-      // URLパラメータが有効な場合はそれを使用
-      setCurrentPage(urlTab);
-    } else {
-      // URLパラメータがない場合はデフォルトタブを使用
-      setCurrentPage(initialTab);
-    }
-
-    setIsInitialized(true);
-  }, [searchParams, initialTab]);
+  // タブ状態管理フックを使用
+  const { currentPage, isInitialized, handleNavClick } = useTabState({
+    initialTab,
+  });
 
   // 現在のタブ情報を取得
   const currentTab = useMemo(() => {

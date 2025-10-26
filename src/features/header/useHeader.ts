@@ -1,18 +1,27 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
+/**
+ * 初期化遅延時間
+ * 3秒間のタイトル表記とその後のヘッダー高さ調整を実現するための遅延時間
+ */
+const INITIALIZATION_DELAY = 3000;
+
+/**
+ * ヘッダー用のカスタムフック
+ * 初期ロード状態を管理
+ * @returns {UseHeaderReturn} ヘッダー用のカスタムフックの戻り値
+ * @property {boolean} isInitialLoad 初期ロード状態
+ */
 export const useHeader = () => {
-  // マウント状態
-  const [mounted, setMounted] = useState(false);
   // 初期ロード状態
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   useEffect(() => {
-    setMounted(true);
     const timer = setTimeout(() => {
       setIsInitialLoad(false);
-    }, 3000);
+    }, INITIALIZATION_DELAY);
     return () => clearTimeout(timer);
   }, []);
 
-  return { mounted, isInitialLoad };
+  return { isInitialLoad };
 };
