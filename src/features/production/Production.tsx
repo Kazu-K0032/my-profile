@@ -97,7 +97,7 @@ export default function Production() {
                           alt="GitHub"
                           width={20}
                           height={20}
-                          className={getIconSize("lg")}
+                          className={`${getIconSize("lg")} dark:invert`}
                           priority={false}
                         />
                       </a>
