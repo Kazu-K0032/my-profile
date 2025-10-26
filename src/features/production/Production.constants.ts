@@ -371,3 +371,9 @@ export const PRODUCTION_ITEMS: ProductionItem[] = [
     },
   },
 ];
+
+/**
+ * ページ先頭に表示されるプロダクト画像にpriorityを設定する数
+ * @see https://nextjs-ja-translation-docs.vercel.app/docs/basic-features/image-optimization#priority
+ */
+export const TOP_PRIORITY_IMAGE_COUNT = 3;

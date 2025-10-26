@@ -219,15 +219,29 @@ export default function ProductionModal({
    */
   useEffect(() => {
     if (!isOpen) return;
+
+    // サーバーサイドレンダリング時の考慮
+    if (typeof window === "undefined" || !document.body) return;
+
+    // 背景のスクロールを無効化
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = "hidden";
+
     // エスケープキーでモーダルを閉じる
     const controller = new AbortController();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") handleClose();
     };
     window.addEventListener("keydown", onKey, { signal: controller.signal });
+
     // モーダルを開く
     const raf = window.requestAnimationFrame(() => setVisible(true));
+
     return () => {
+      // 背景のスクロールを復元
+      if (typeof window !== "undefined" && document.body) {
+        document.body.style.overflow = originalStyle;
+      }
       controller.abort();
       window.cancelAnimationFrame(raf);
       setVisible(false);
@@ -266,7 +280,7 @@ export default function ProductionModal({
         )}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-start justify-between px-8 py-6">
+        <div className="flex items-center justify-between px-8 py-6">
           <h2
             className={cn(
               "text-2xl leading-tight font-extrabold md:text-3xl",
@@ -294,16 +308,16 @@ export default function ProductionModal({
                 strokeLinejoin="round"
               />
             </svg>
-            <span>閉じる</span>
+            <span className="hidden md:inline">閉じる</span>
           </button>
         </div>
-        <div className="grid h-[calc(80vh-88px)] gap-8 px-8 pb-6 md:grid-cols-2">
-          <div className="flex h-full items-center justify-center">
-            {leftSlot}
+        <div className="flex h-[calc(80vh-88px)] flex-col gap-4 px-4 pb-6 md:grid md:grid-cols-2 md:gap-8 md:overflow-hidden md:px-8">
+          <div className="flex shrink-0 items-center justify-center md:h-full">
+            <div className="w-full max-w-[500px] md:max-w-none">{leftSlot}</div>
           </div>
-          <div className="relative md:border-l md:border-gray-200 md:pl-8 dark:md:border-neutral-800">
-            <div className="flex h-full flex-col">
-              <div className="flex-1 overflow-y-auto pr-2">
+          <div className="relative flex flex-1 flex-col md:border-l md:border-gray-200 md:pl-8 dark:md:border-neutral-800">
+            <div className="scrollbar-custom flex-1 overflow-y-auto pr-2 md:flex md:flex-col md:overflow-hidden">
+              <div className="max-h-[calc(40vh-80px)] overflow-x-hidden overflow-y-auto md:max-h-[calc(70vh-120px)] md:min-h-0 md:flex-1 md:pr-2">
                 {pageIndex === 0 || pages.length === 0 ? (
                   rightSlot
                 ) : currentPage ? (
@@ -317,52 +331,52 @@ export default function ProductionModal({
                   </div>
                 ) : null}
               </div>
-              <div className="sticky bottom-0 z-10 py-3 backdrop-blur dark:border-neutral-800 dark:bg-neutral-900/80">
-                <div className="relative flex items-center justify-between gap-3">
-                  <button
-                    type="button"
-                    // 前のページに移動
-                    onClick={() => setPageIndex((p) => Math.max(0, p - 1))}
-                    disabled={pageIndex === 0}
-                    className={cn(
-                      "w-max rounded-lg px-4 py-2 text-sm font-medium shadow-sm",
-                      pageIndex === 0
-                        ? "cursor-not-allowed bg-emerald-600/40 text-white/70"
-                        : "cursor-pointer bg-emerald-600 text-white hover:bg-emerald-500",
-                      "dark:bg-emerald-600 dark:hover:bg-emerald-500"
-                    )}
-                  >
-                    前へ
-                  </button>
-                  <span className="pointer-events-none absolute left-1/2 flex max-w-[70%] -translate-x-1/2 items-center gap-1 text-center text-sm font-medium text-gray-600 dark:text-gray-300">
-                    <span className="truncate">
-                      {pageIndex === 0 ? "概要" : currentPage?.title || ""}
-                    </span>
-                    <span className="shrink-0">{`(${pageIndex + 1}/${totalPages})`}</span>
+            </div>
+            <div className="shrink-0 py-3 md:sticky md:bottom-0 md:z-10 md:backdrop-blur dark:md:border-neutral-800 dark:md:bg-neutral-900/80">
+              <div className="flex items-center justify-between gap-3">
+                <button
+                  type="button"
+                  // 前のページに移動
+                  onClick={() => setPageIndex((p) => Math.max(0, p - 1))}
+                  disabled={pageIndex === 0}
+                  className={cn(
+                    "w-max rounded-lg px-4 py-2 text-sm font-medium shadow-sm",
+                    pageIndex === 0
+                      ? "cursor-not-allowed bg-emerald-600/40 text-white/70"
+                      : "cursor-pointer bg-emerald-600 text-white hover:bg-emerald-500",
+                    "dark:bg-emerald-600 dark:hover:bg-emerald-500"
+                  )}
+                >
+                  前へ
+                </button>
+                <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 text-center text-sm font-medium text-gray-600 dark:text-gray-300">
+                  <span className="hidden md:inline">
+                    {pageIndex === 0 ? "概要" : currentPage?.title || ""}{" "}
                   </span>
-                  <button
-                    type="button"
-                    // 次のページに移動
-                    onClick={() => {
-                      if (pageIndex >= totalPages - 1) {
-                        // 最後のページの場合は、モーダルを閉じる
-                        handleClose();
-                      } else {
-                        // 次のページに移動
-                        setPageIndex((p) => Math.min(totalPages - 1, p + 1));
-                      }
-                    }}
-                    className={cn(
-                      "w-max rounded-lg px-4 py-2 text-sm font-medium shadow-sm",
-                      pageIndex >= pages.length
-                        ? "cursor-pointer bg-rose-600 text-white hover:bg-rose-500"
-                        : "cursor-pointer bg-emerald-600 text-white hover:bg-emerald-500",
-                      "dark:bg-emerald-600 dark:hover:bg-emerald-500"
-                    )}
-                  >
-                    {pageIndex >= pages.length ? "閉じる" : "次へ"}
-                  </button>
-                </div>
+                  <span>{`(${pageIndex + 1}/${totalPages})`}</span>
+                </span>
+                <button
+                  type="button"
+                  // 次のページに移動
+                  onClick={() => {
+                    if (pageIndex >= totalPages - 1) {
+                      // 最後のページの場合は、モーダルを閉じる
+                      handleClose();
+                    } else {
+                      // 次のページに移動
+                      setPageIndex((p) => Math.min(totalPages - 1, p + 1));
+                    }
+                  }}
+                  className={cn(
+                    "w-max rounded-lg px-4 py-2 text-sm font-medium shadow-sm",
+                    pageIndex >= pages.length
+                      ? "cursor-pointer bg-rose-600 text-white hover:bg-rose-500"
+                      : "cursor-pointer bg-emerald-600 text-white hover:bg-emerald-500",
+                    "dark:bg-emerald-600 dark:hover:bg-emerald-500"
+                  )}
+                >
+                  {pageIndex >= pages.length ? "閉じる" : "次へ"}
+                </button>
               </div>
             </div>
           </div>

@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import ThemeToggle from "@/components/ThemeToggle";
 import { NAVIGATION_TABS } from "@/constants/globals.constants";
 import type { NavigationTabKey } from "@/types/globals.types";
-import { Navigation, PortfolioTitle, ThemeToggle } from "./components";
+import { Navigation, PortfolioTitle } from "./components";
 import { headerStyles } from "./Header.styles";
 import { useHeader } from "./useHeader";
 
