@@ -81,7 +81,7 @@ export default function HomeClient({ initialTab }: HomeClientProps) {
   }
 
   return (
-    <div suppressHydrationWarning={true} className="c-bg-primary min-h-screen">
+    <div className="c-bg-primary min-h-screen">
       <Header onNavClick={handleNavClick} currentPage={currentPage} />
 
       {/* メインコンテンツエリア */}
