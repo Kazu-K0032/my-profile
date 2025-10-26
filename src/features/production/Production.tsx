@@ -43,7 +43,7 @@ export default function Production() {
                 className="grid cursor-pointer grid-cols-1 gap-0 md:grid-cols-12"
               >
                 {/* 左：サムネイル */}
-                <div className="relative md:col-span-5">
+                <div className="relative h-48 md:col-span-5 md:h-auto">
                   <Image
                     src={item.thumbnailUrl || item.modal?.images?.[0] || ""}
                     alt={item.title}

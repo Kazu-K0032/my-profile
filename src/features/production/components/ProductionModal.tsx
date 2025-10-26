@@ -219,15 +219,24 @@ export default function ProductionModal({
    */
   useEffect(() => {
     if (!isOpen) return;
+
+    // 背景のスクロールを無効化
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = "hidden";
+
     // エスケープキーでモーダルを閉じる
     const controller = new AbortController();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") handleClose();
     };
     window.addEventListener("keydown", onKey, { signal: controller.signal });
+
     // モーダルを開く
     const raf = window.requestAnimationFrame(() => setVisible(true));
+
     return () => {
+      // 背景のスクロールを復元
+      document.body.style.overflow = originalStyle;
       controller.abort();
       window.cancelAnimationFrame(raf);
       setVisible(false);
@@ -299,11 +308,11 @@ export default function ProductionModal({
         </div>
         <div className="flex h-[calc(80vh-88px)] flex-col gap-4 px-4 pb-6 md:grid md:grid-cols-2 md:gap-8 md:overflow-hidden md:px-8">
           <div className="flex shrink-0 items-center justify-center md:h-full">
-            <div className="w-full max-w-[400px] md:max-w-none">{leftSlot}</div>
+            <div className="w-full max-w-[500px] md:max-w-none">{leftSlot}</div>
           </div>
           <div className="relative flex flex-1 flex-col md:border-l md:border-gray-200 md:pl-8 dark:md:border-neutral-800">
             <div className="scrollbar-custom flex-1 overflow-y-auto pr-2 md:flex md:flex-col md:overflow-hidden">
-              <div className="md:flex-1 md:overflow-y-auto md:pr-2">
+              <div className="max-h-[calc(40vh-80px)] overflow-x-hidden overflow-y-auto md:max-h-[calc(70vh-120px)] md:min-h-0 md:flex-1 md:pr-2">
                 {pageIndex === 0 || pages.length === 0 ? (
                   rightSlot
                 ) : currentPage ? (
@@ -319,7 +328,7 @@ export default function ProductionModal({
               </div>
             </div>
             <div className="shrink-0 py-3 md:sticky md:bottom-0 md:z-10 md:backdrop-blur dark:md:border-neutral-800 dark:md:bg-neutral-900/80">
-              <div className="relative flex items-center justify-between gap-3">
+              <div className="flex items-center justify-between gap-3">
                 <button
                   type="button"
                   // 前のページに移動
