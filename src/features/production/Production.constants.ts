@@ -5,54 +5,6 @@ import type { ProductionItem } from "./Production.types";
  */
 export const PRODUCTION_ITEMS: ProductionItem[] = [
   {
-    id: "administration-table",
-    title: "管理テーブルアプリ",
-    description: "Google Apps Scriptを使用した管理テーブル",
-    url: "https://github.com/Kazu-K0032/Administration-Table",
-    publishedAt: "2023/10/05",
-    thumbnailUrl: "/common/administration-table.png",
-    tags: ["Google Apps Script"],
-    features: [
-      "やることリスト管理: 月次のタスク進捗を追跡",
-      "自動通知: 未完了タスクの週次通知（LINE Messaging API）",
-      "進捗計算: タスクの平均進捗率を自動計算",
-      "リセット機能: 月次タスクの進捗をリセット",
-      "編集履歴: スプレッドシートの変更履歴を記録",
-    ],
-    modal: {
-      images: ["/common/administration-table.png"],
-      pages: [
-        {
-          title: "【プロジェクト概要・開発背景】",
-          content: [
-            "## 概要",
-            "Google Apps Scriptを使用した管理テーブル自動化プロジェクトです。",
-            "スプレッドシートの「やることリスト」を管理し、LINE Messaging APIによる通知機能を提供します。",
-            "## 背景",
-            "インターンでGASを使った開発をしていたのと、自身の意識を高めるための毎月ごとのタスク管理表が欲しいと感じ、このようなプロジェクトを作成しました。",
-          ],
-        },
-        {
-          title: "【使用技術・ツール】",
-          content: [
-            "### 言語",
-            "Google Apps Script",
-            "### ツール",
-            "Google Sheets, LINE Messaging API",
-            "### 技術選定",
-            "GASの学習のため",
-          ],
-        },
-        {
-          title: "【プロジェクトを通した学び】",
-          content: ["日常を支える簡単なGASであれば自分で作れるようになった。"],
-        },
-      ],
-      demoUrl: "https://github.com/Kazu-K0032/Administration-Table",
-      repoUrl: "https://github.com/Kazu-K0032/Administration-Table",
-    },
-  },
-  {
     id: "template-todo-app",
     title: "テンプレートTodoアプリ",
     description:
@@ -100,11 +52,63 @@ export const PRODUCTION_ITEMS: ProductionItem[] = [
     },
   },
   {
+    id: "tiktok-api-features",
+    title: "TikTok API Features",
+    description:
+      "TikTok API を使用してユーザープロフィール情報と投稿動画を取得・表示するアプリです。",
+    url: "https://tiktok-api-features.vercel.app/",
+    publishedAt: "2025/08/05",
+    thumbnailUrl: "/common/tiktok-api-features.png",
+    tags: ["Python", "JavaScript", "HTML/CSS", "TikTok API"],
+    features: [
+      "認証・ユーザー管理",
+      "プロフィール・統計情報",
+      "投稿動画一覧/詳細の取得・表示",
+      "動画投稿機能",
+    ],
+    modal: {
+      images: ["/common/tiktok-api-features.png"],
+      pages: [
+        {
+          title: "【プロジェクト概要・開発背景】",
+          content: [
+            "## 概要",
+            "TikTok API を使用してユーザープロフィール情報と投稿動画を取得・表示するアプリです。",
+            "デプロイ先はモックデータを使っていますが、ローカルで開発する際は実際のTikTok APIを使用しています。",
+            "## 背景",
+            "仕事でTikTok for DevelopersのAPIを使用したシステムを使う可能性が出たため、要件と一致するかの検証のために作成しました。",
+          ],
+        },
+        {
+          title: "【使用技術・ツール】",
+          content: [
+            "### 言語",
+            "Python, JavaScript, HTML/CSS",
+            "### ツール",
+            "TikTok API, Vercel",
+            "### 技術選定",
+            "TikTok for DevelopersのAPIを使用したシステムを使う可能性が出たため",
+            "Pythonは検証で扱う事が多く、特にバックエンド側の開発が中心になるときに扱うことが多いため、今回のプロジェクトでもPythonを使用しました。",
+          ],
+        },
+        {
+          title: "【プロジェクトを通した学び】",
+          content: [
+            "検証時点のAPIはSandbox環境でしか利用しませんでしたが、それでも基本的な取得機能は実装することができた。",
+            "TikTok APIの基本機能に加え、Sandbox環境での制限と、本番環境で可能な機能を知ることができた。",
+          ],
+        },
+      ],
+      demoUrl: "https://tiktok-api-features.vercel.app/",
+      repoUrl: "https://github.com/Kazu-K0032/tiktok-api-features",
+    },
+  },
+  {
     id: "go-chat-app",
     title: "Goを使用した基本的なチャットアプリ",
     description:
       "認証・プロフィール・ユーザー検索・チャット機能を備えた基本的なチャットアプリです",
-    url: "https://github.com/Kazu-K0032/Go-Chat-App",
+    url: "https://go-chat-app-240878580464.asia-northeast1.run.app/",
     publishedAt: "2025/04/19",
     thumbnailUrl: "/common/go-chat-app.png",
     tags: ["Go", "Firebase", "HTML", "SCSS", "JavaScript"],
@@ -158,8 +162,8 @@ export const PRODUCTION_ITEMS: ProductionItem[] = [
           ],
         },
       ],
-      demoUrl: "https://github.com/Kazu-K0032/Go-Chat-App",
-      repoUrl: "https://github.com/Kazu-K0032/Go-Chat-App",
+      demoUrl: "https://go-chat-app-240878580464.asia-northeast1.run.app/",
+      repoUrl: "https://github.com/Kazu-K0032/go-chat-app",
     },
   },
   {
@@ -224,7 +228,7 @@ export const PRODUCTION_ITEMS: ProductionItem[] = [
         },
       ],
       demoUrl: "https://population-trend-graph-app.vercel.app/",
-      repoUrl: "https://github.com/kujiKazuaki/population-trend-graph-app",
+      repoUrl: "https://github.com/Kazu-K0032/population-trend-graph-app",
     },
   },
   {
@@ -298,8 +302,69 @@ export const PRODUCTION_ITEMS: ProductionItem[] = [
         },
       ],
       demoUrl:
-        "https://docs.google.com/spreadsheets/d/1qQYZ1AvQwvACqRvZFx3LaFvfr0kbPzDPFwyqpP3SBAU/edit?gid=1609864189#gid=1609864189",
-      repoUrl: "https://github.com/kujiKazuaki/ScriptOutputSystem",
+        "https://docs.google.com/spreadsheets/d/1qQYZ1AvQwvACqRvZFx3LaFvfr0kbPzDPFwyqpP3SBAU/",
+      repoUrl: "https://github.com/Kazu-K0032/script-output-system",
+    },
+  },
+  {
+    id: "administration-table",
+    title: "タスク|アイパス管理",
+    description: "GoogleスプレッドシートとGASを使った管理表",
+    url: "https://docs.google.com/spreadsheets/d/1Xq2VbfydK7L2SKshHiyCtijIy3IGlKcP0Mu20QN_Uyo/",
+    publishedAt: "2023/10/01",
+    thumbnailUrl: "/common/administrationTable.png",
+    tags: ["Google Apps Script", "JavaScript", "スプレッドシート"],
+    features: [
+      "やることリスト管理",
+      "未完了タスクの週次通知（LINE Messaging API）",
+      "タスクの平均進捗率を自動計算",
+      "月次タスクの進捗をリセット",
+      "スプレッドシートの変更履歴を記録",
+    ],
+    modal: {
+      images: ["/common/administrationTable.png"],
+      pages: [
+        {
+          title: "【プロジェクト概要・開発背景】",
+          content: [
+            "Google Apps Scriptを使用した管理テーブル自動化プロジェクトです。",
+            "スプレッドシートの「やることリスト」を管理し、LINE Messaging APIによる通知機能を提供します。",
+          ],
+        },
+        {
+          title: "【使用技術・ツール】",
+          content: [
+            "### 言語",
+            "",
+            "JavaScript",
+            "",
+            "### ツール",
+            "",
+            "スプレッドシート, Google Apps Script, Git/GitHub",
+            "",
+            "### 技術選定",
+            "",
+            "開発当初はGASを頻繁に使用していたのと、自分専用のパスワードとタスクの管理表が欲しいと思い採用しました。",
+          ],
+        },
+        {
+          title: "【開発プロセス・自分の役割】",
+          content: [
+            "本プロジェクトは、すべての開発工程を一人で担当しました。",
+            "まずGASを使う事は考慮せず、使っていく中で「あったら便利だな」と思う機能を随時追加しました。",
+          ],
+        },
+        {
+          title: "【プロジェクトを通した学び】",
+          content: [
+            "自身の生活を支えるアプリはGASで十分に開発できると実感できた",
+            "今でもこのスプレッドシートは重宝しています。",
+          ],
+        },
+      ],
+      demoUrl:
+        "https://docs.google.com/spreadsheets/d/1Xq2VbfydK7L2SKshHiyCtijIy3IGlKcP0Mu20QN_Uyo/",
+      repoUrl: "https://github.com/Kazu-K0032/administration-table",
     },
   },
   {
